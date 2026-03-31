@@ -1,40 +1,182 @@
+/* 1. Importación de Fuentes Elegantes */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root {
-    --primary: #d4af37; /* Dorado sutil */
-    --bg: #fdfaf6;
+    --primary: #d4af37; /* Dorado Champagne */
+    --secondary: #8e2d2d; /* Borgoña suave (opcional para acentos) */
+    --bg: #fdfaf6; /* Crema Hueso */
     --text: #2c2c2c;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    margin: 0; font-family: 'Playfair Display', serif; background: var(--bg); color: var(--text);
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Hero con imagen de fondo */
+/* 2. Pantalla de Bienvenida (Overlay) */
+#overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    text-align: center;
+    padding: 20px;
+}
+
+#overlay img {
+    width: 80px;
+    margin-bottom: 30px;
+    filter: brightness(0) invert(1); /* Favicon en blanco para el fondo oscuro */
+}
+
+#start-btn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 12px 30px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#start-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* 3. Animación Fade In del Contenido Principal */
+#content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s ease-in-out, visibility 2s;
+}
+
+#content.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 4. Hero Section (Portada) */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/portada.jpg');
-    background-size: cover; background-position: center;
-    display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/portada.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    padding: 20px;
 }
 
-/* Galería tipo Pinterest */
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.hero p {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+#countdown {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    font-weight: 300;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 15px;
+}
+
+/* 5. Secciones de Contenido */
+section {
+    padding: 60px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+/* 6. Galería Estilo Pinterest (Masonry) */
 .masonry-gallery {
-    column-count: 2; column-gap: 10px; padding: 20px;
+    column-count: 2;
+    column-gap: 15px;
+    margin: 30px 0;
 }
+
 .masonry-gallery img {
-    width: 100%; border-radius: 8px; margin-bottom: 10px;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: block;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* Botones */
+/* 7. Botones de Acción */
 .btn-wa, .btn-pinterest {
-    display: block; width: 80%; margin: 20px auto; padding: 15px;
-    text-decoration: none; border-radius: 25px; text-align: center;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    padding: 18px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 0.2s;
 }
-.btn-wa { background: #25d366; color: white; font-weight: bold; }
 
-/* Audio Visualizer */
-#audio-control {
-    position: fixed; bottom: 20px; right: 20px; display: flex; gap: 3px; cursor: pointer;
+.btn-wa {
+    background-color: #25d366;
+    color: white;
+    font-weight: 600;
 }
-.bar { width: 4px; height: 15px; background: var(--primary); animation: pulse 1s infinite; }
-@keyframes pulse { 0%, 100% { height: 5px; } 50% { height: 20px; } }
+
+.btn-pinterest {
+    background-color: white;
+    border: 1px solid #e60023;
+    color: #e60023;
+    margin-top: 10px;
+}
+
+.btn-wa:active, .btn-pinterest:active {
+    transform: scale(0.95);
+}
+
+/* 8. Reproductor de Música (Visualizer) */
+#audio-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5
