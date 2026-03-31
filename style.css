@@ -1,1 +1,40 @@
+:root {
+    --primary: #d4af37; /* Dorado sutil */
+    --bg: #fdfaf6;
+    --text: #2c2c2c;
+}
 
+body {
+    margin: 0; font-family: 'Playfair Display', serif; background: var(--bg); color: var(--text);
+    overflow-x: hidden;
+}
+
+/* Hero con imagen de fondo */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/portada.jpg');
+    background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+}
+
+/* Galería tipo Pinterest */
+.masonry-gallery {
+    column-count: 2; column-gap: 10px; padding: 20px;
+}
+.masonry-gallery img {
+    width: 100%; border-radius: 8px; margin-bottom: 10px;
+}
+
+/* Botones */
+.btn-wa, .btn-pinterest {
+    display: block; width: 80%; margin: 20px auto; padding: 15px;
+    text-decoration: none; border-radius: 25px; text-align: center;
+}
+.btn-wa { background: #25d366; color: white; font-weight: bold; }
+
+/* Audio Visualizer */
+#audio-control {
+    position: fixed; bottom: 20px; right: 20px; display: flex; gap: 3px; cursor: pointer;
+}
+.bar { width: 4px; height: 15px; background: var(--primary); animation: pulse 1s infinite; }
+@keyframes pulse { 0%, 100% { height: 5px; } 50% { height: 20px; } }
