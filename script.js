@@ -4,14 +4,28 @@ const content = document.getElementById('content');
 const music = document.getElementById('bg-music');
 const audioControl = document.getElementById('audio-control');
 
-// 1. Iniciar experiencia (Necesario para iOS/Safari)
+// Configuración de volumen inicial
+music.volume = 0.5; 
+
 startBtn.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    content.classList.remove('hidden');
-    music.play();
+    // 1. Iniciar desvanecimiento del overlay
+    overlay.style.opacity = '0';
+    
+    // 2. Intentar reproducir música inmediatamente (importante para iOS)
+    music.play().catch(error => console.log("Esperando interacción..."));
+
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        content.style.display = 'block'; // Asegura que el layout se calcule
+        
+        // Pequeño delay para que el navegador procese el display:block antes del opacity
+        setTimeout(() => {
+            content.classList.add('visible');
+        }, 50);
+    }, 800);
 });
 
-// 2. Control de Pausa/Play de música
+// Control de pausa/play con feedback visual
 audioControl.addEventListener('click', () => {
     if (music.paused) {
         music.play();
@@ -22,16 +36,16 @@ audioControl.addEventListener('click', () => {
     }
 });
 
-// 3. Cuenta regresiva (Ajusta la fecha aquí)
-const weddingDate = new Date("Apr 02, 2027 18:00:00").getTime();
+// Cuenta regresiva optimizada
+const weddingDate = new Date("Jun 30, 2025 18:00:00").getTime(); // Ajusta tu fecha aquí
 
 setInterval(() => {
     const now = new Date().getTime();
-    const distance = weddingDate - now;
+    const dist = weddingDate - now;
+    
+    const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+    const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-    document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m`;
+    document.getElementById("countdown").innerHTML = `${d}d : ${h}h : ${m}m`;
 }, 1000);
