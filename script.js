@@ -23,7 +23,7 @@ audioControl.addEventListener('click', () => {
 });
 
 // 3. Cuenta regresiva (Ajusta la fecha aquí)
-const weddingDate = new Date("Oct 12, 2026 18:00:00").getTime();
+const weddingDate = new Date("Apr 02, 2027 18:00:00").getTime();
 
 setInterval(() => {
     const now = new Date().getTime();
