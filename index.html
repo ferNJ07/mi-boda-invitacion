@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nuestra Boda | Invitación</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <div id="overlay">
+        <img src="assets/favicon.png" alt="Logo" class="fade-in-logo">
+        <button id="start-btn">INICIAR EXPERIENCIA</button>
+    </div>
 
+    <main id="content" class="hidden">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Claudio & Fernanda</h1>
+                <p>NUESTRA BODA</p>
+                <div id="countdown"></div>
+            </div>
+        </section>
+
+        <section class="dress-code">
+            <h2>Dress Code</h2>
+            <p>Etiqueta: Formal Playa</p>
+            <div class="masonry-gallery">
+                <img src="assets/dress1.jpg" alt="Inspiración 1">
+                <img src="assets/dress2.jpg" alt="Inspiración 2">
+                <img src="assets/dress3.jpg" alt="Inspiración 3">
+                <img src="assets/dress4.jpg" alt="Inspiración 4">
+            </div>
+            <a href="TU_LINK_PINTEREST" class="btn-pinterest">Ver inspiración en Pinterest</a>
+        </section>
+
+        <section class="rsvp">
+            <a href="https://wa.me/528186909432?text=¡Hola!%20Queremos%20confirmar%20nuestra%20asistencia%20a%20su%20boda.%20Nombre:%20_______" target="_blank" class="btn-wa">Confirmar por WhatsApp</a>
+        </section>
+
+        <div id="audio-control" class="music-playing">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+    </main>
+
+    <audio id="bg-music" loop src="assets/site_song.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
