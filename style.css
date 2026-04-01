@@ -280,15 +280,31 @@ h2 {
 
 /* 8. CONTROL DE MÚSICA */
 #audio-control {
-    /* ... mantener posición y dimensiones ... */
-    display: flex; 
+    position: fixed; /* Asegura que flote sobre el contenido */
+    bottom: 20px;    /* Distancia desde abajo */
+    right: 20px;     /* Distancia desde la derecha */
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
     cursor: pointer;
-    z-index: 99999;
-    /* Aseguramos que sea circular y visible cuando se active */
-    transition: opacity 1s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 99999; /* El número más alto para que nada lo tape */
+    
+    /* Estado inicial para la animación de entrada */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s, transform 0.3s ease;
+}
+
+/* Esta clase la añade el JS después de que el usuario inicia la experiencia */
+#audio-control.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Estado cuando la música está pausada (barras quietas pero visibles) */
