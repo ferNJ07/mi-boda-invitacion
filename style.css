@@ -208,10 +208,25 @@ h2 {
     filter: saturate(0.8) contrast(1); 
 }
 
+/* Estilo para el nuevo botón de Calendario */
+.btn-calendar {
+    background-color: transparent;
+    border: 1px solid var(--text);
+    color: var(--text);
+}
+
+/* Ajuste para que los botones en la sección de ubicación se apilen correctamente en móviles */
 .botones-maps {
     display: flex;
-    gap: 12px;
+    flex-direction: column; /* Cambiamos a columna para que no se vean apretados */
+    gap: 10px;
     margin-top: 25px;
+    align-items: center;
+}
+
+.botones-maps .btn-universal {
+    margin: 0; /* Quitamos el margen automático para controlarlo con el gap */
+    width: 100%; /* Que ocupen el mismo ancho */
 }
 
 .btn-maps {
