@@ -172,6 +172,19 @@ h2 {
 }
 
 /* --- SECCIÓN INTRODUCCIÓN --- */
+/* Estado inicial de la introducción */
+.intro-container {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+/* Estado cuando se hace visible */
+.intro-container.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .introduccion {
     padding: 80px 20px;
     text-align: center;
