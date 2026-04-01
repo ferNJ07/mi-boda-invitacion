@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- decripcion de la miniatura de whatsapp -->
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mi-boda-invitacion.vercel.app/">
     <meta property="og:title" content="¡Nuestra Boda! | Fernando & Valeria">
-    <meta property="og:description" content="Acompáñanos a celebrar este momento tan especial.">
+    <meta property="og:description" content="Acompáñanos a celebrar este momento tan especial. Haz clic para ver los detalles de nuestra invitación.">
     <meta property="og:image" content="https://mi-boda-invitacion.vercel.app/assets/social_media_sign.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mi-boda-invitacion.vercel.app/">
+    <meta property="twitter:title" content="Nuestra Boda | Fernando & Valeria">
+    <meta property="twitter:description" content="Te invitamos a ser parte de nuestra historia.">
+    <meta property="twitter:image" content="https://mi-boda-invitacion.vercel.app/assets/social_media_sign.png">
     
     <title>¡Nuestra Boda! | Fernando & Valeria</title>
-    
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/favicon2.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Montserrat:wght@300&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div id="overlay">
-        <img src="assets/favicon2.png" alt="Logo de Boda" class="fade-in-logo">
+        <img src="assets/favicon2.png" alt="Logo" class="fade-in-logo">
         <button id="start-btn">INICIAR EXPERIENCIA</button>
     </div>
 
-    <main id="content">
-        
+    <main id="content" class="hidden">
         <section class="hero">
             <div class="hero-content">
                 <h1>Fernando & Valeria</h1>
@@ -40,33 +51,49 @@
                 <p class="lugar-detalle">Av. Paseo de los Leones 7004, Valle de Cumbres, Monterrey.</p>
                 
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3594.383184646731!2d-100.44213242371904!3d25.72485610931557!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!4g13.1!3m3!1m2!1s0x8662990666666667%3A0x6476906666666666!2sVIE%20EVENTS%20MTY!5e0!3m2!1ses-419!2smx!4v1711980000000!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3594.382103565611!2d-100.44213242371424!3d25.75791780877995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662973d748f6a09%3A0xca88c4f3825dfae9!2sVIE%20EVENTS%20MTY!5e0!3m2!1ses-419!2smx!4v1715634567890!5m2!1ses-419!2smx" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
                 </div>
         
                 <div class="botones-maps">
-                    <a href="http://googleusercontent.com/maps.google.com/5" target="_blank" class="btn-universal btn-maps">Ver en Google Maps</a>
-                    <a href="https://waze.com/ul?q=VIE%20EVENTS%20MTY&navigate=yes" target="_blank" class="btn-universal btn-waze">Ver en Waze</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=VIE+EVENTS+MTY&query_place_id=ChIJCWqPdD2XYoYR6fpdgvPHuMo" 
+                       target="_blank" class="btn-universal btn-maps">
+                       Ver en Google Maps
+                    </a>
+                    <a href="https://waze.com/ul?q=VIE%20EVENTS%20MTY&ll=25.7548513,-100.4395575&navigate=yes" 
+                       target="_blank" class="btn-universal btn-waze">
+                       Ver en Waze Maps
+                    </a>
                 </div>
             </div>
         </section>
 
         <section class="dress-code">
             <h2>Dress Code</h2>
-            <p>ETIQUETA<br>Queremos que luzcan increíbles. Aquí algo de inspiración visual.</p>
-            
+            <p>ETIQUETA<br>
+            Queremos que luzcan increíbles y se sientan cómodos. Hemos preparado una pequeña selección visual para inspirar sus atuendos en nuestro gran día.</p>
+        </section>
             <div class="masonry-gallery">
-                <img src="assets/dress1.jpg" alt="Dress Code 1">
-                <img src="assets/dress2.jpg" alt="Dress Code 2">
-                <img src="assets/dress3.jpg" alt="Dress Code 3">
-                <img src="assets/dress4.jpg" alt="Dress Code 4">
-                <img src="assets/dress5.jpg" alt="Dress Code 5">
-                <img src="assets/dress6.jpg" alt="Dress Code 6">
+                <img src="assets/dress1.jpg" alt="Inspiración 1">
+                <img src="assets/dress2.jpg" alt="Inspiración 2">
+                <img src="assets/dress3.jpg" alt="Inspiración 3">
+                <img src="assets/dress4.jpg" alt="Inspiración 4">
+                <img src="assets/dress5.jpg" alt="Inspiración 5">
+                <img src="assets/dress6.jpg" alt="Inspiración 6">
             </div>
-            <a href="https://pin.it/32yiB2dsx" target="_blank" class="btn-universal btn-pinterest">Ver inspiración en Pinterest</a>
+            <a href="https://pin.it/32yiB2dsx" class="btn-universal btn-pinterest">Ver inspiración en Pinterest</a>
         </section>
 
         <section class="rsvp">
-            <a href="https://wa.me/528186909432?text=BODA_INFO" class="btn-universal btn-wa">Confirmar Asistencia</a>
+            <a href="https://wa.me/528186909432?text=BODA_INFO" class="btn-universal btn-wa">
+                Confirmar Asistencia
+            </a>
         </section>
 
     </main>
@@ -82,5 +109,6 @@
     </audio>
 
     <script src="script.js"></script>
+    
 </body>
 </html>
