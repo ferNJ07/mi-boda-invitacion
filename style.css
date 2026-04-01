@@ -84,6 +84,54 @@ body {
     margin: 0;
 }
 
+/* UBICACIÓN */
+.ubicacion-card {
+    background: white;
+    padding: 35px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin: 30px auto;
+    border: 1px solid #f0f0f0;
+    max-width: 90%;
+}
+
+.lugar-nombre {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--text);
+    margin: 10px 0 5px 0;
+}
+
+.botones-maps {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-maps {
+    background-color: #1a1a1a;
+    color: white;
+    flex: 1;
+    padding: 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.btn-waze {
+    background-color: #fdfaf6;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    flex: 1;
+    padding: 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
 /* 5. GALERÍA MASONRY (TIPO PINTEREST) */
 .masonry-gallery {
     column-count: 2;
