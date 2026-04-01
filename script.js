@@ -8,23 +8,26 @@ const audioControl = document.getElementById('audio-control');
 music.volume = 0.5; 
 
 startBtn.addEventListener('click', () => {
-    // 1. Desvanecer overlay
+    // 1. Desvanecer overlay negro
     overlay.style.opacity = '0';
-    music.play().catch(e => console.log("Audio play prevented"));
+    
+    // Intentar reproducir música (crítico para iOS)
+    music.play().catch(e => console.log("Audio play blocked"));
 
     setTimeout(() => {
         overlay.style.display = 'none';
         
-        // 2. Mostrar contenedor principal
-        content.style.display = 'block';
+        // 2. ACTIVAR AUDIO CONTROL (Separado del content)
+        audioControl.style.display = 'flex';
         
-        // 3. Mostrar ICONO DE MÚSICA por separado para evitar errores de renderizado
-        audioControl.style.display = 'flex'; 
+        // 3. MOSTRAR CONTENIDO
+        content.style.display = 'block';
 
+        // 4. DISPARAR ANIMACIONES
         setTimeout(() => {
             content.classList.add('visible');
-            audioControl.style.opacity = '1'; // Aparece suavemente
-            audioControl.classList.add('music-playing'); // Inicia animación
+            audioControl.style.opacity = '1';
+            audioControl.classList.add('music-playing');
         }, 100);
     }, 800);
 });
