@@ -32,12 +32,12 @@ startBtn.addEventListener('click', () => {
 // Control de pausa/play con feedback visual
 audioControl.addEventListener('click', () => {
     if (music.paused) {
-        music.play();
-        audioControl.classList.add('music-playing');
+        music.play().then(() => {
+            audioControl.classList.add('music-playing');
+        }).catch(e => console.error("Error al reproducir:", e));
     } else {
         music.pause();
         audioControl.classList.remove('music-playing');
-        // Al quitar la clase, las barras vuelven automáticamente a height: 10px
     }
 });
 // Cuenta regresiva optimizada
