@@ -1,5 +1,5 @@
 /* 1. FUENTES Y VARIABLES */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Licorice&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
     --primary: #d4af37; /* Dorado */
@@ -201,14 +201,15 @@ h2 {
 }
 
 .linea-2 {
-    font-family: 'Licorice', serif;
-    font-style: italic;
-    font-size: 3.5rem; /* Significativamente más grande */
-    color: var(--primary);
-    margin-top: -25px; /* Aquí ocurre la superposición */
+    font-family: 'Licorice', cursive;
+    font-size: 5.5rem;      /* Tamaño extra para que destaque el trazo fino */
+    color: var(--primary);  /* El dorado le da ese toque de invitación premium */
+    margin-top: -55px;      /* Ajuste de superposición para que "pise" sutilmente la línea superior */
     position: relative;
     z-index: 2;
-    text-transform: none; /* Para que luzca la cursiva natural */
+    text-transform: none;
+    line-height: 0.8;       /* Cerramos el espacio para que la superposición sea natural */
+    display: block;
 }
 
 .descripcion-intro {
