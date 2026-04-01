@@ -55,16 +55,13 @@ body {
 
 /* 3. CONTENIDO PRINCIPAL (EL TRUCO DEL FADE IN) */
 #content {
+    display: none; /* Oculto inicialmente para no interferir con el overlay */
     opacity: 0;
-    transform: translateY(10px); /* Un pequeño movimiento hacia arriba al aparecer */
-    transition: opacity 1.5s ease-in-out, transform 1.5s ease-out;
-    visibility: hidden;
+    transition: opacity 1.5s ease-in-out;
 }
 
 #content.visible {
     opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
 }
 
 /* 4. HERO / PORTADA */
