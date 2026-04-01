@@ -35,12 +35,16 @@ body {
     z-index: 1000;
     text-align: center;
     transition: opacity 0.8s ease; 
+    padding: 20px;
 }
 
+/* CORRECCIÓN: Logo de bienvenida mucho más grande */
 #overlay img {
-    width: 60px;
-    margin-bottom: 20px;
+    width: 200px; /* Antes era 60px, ahora tiene presencia */
+    height: auto;
+    margin-bottom: 30px;
     filter: brightness(0) invert(1);
+    image-rendering: -webkit-optimize-contrast;
 }
 
 #start-btn {
@@ -51,6 +55,12 @@ body {
     font-family: 'Cinzel', serif;
     letter-spacing: 2px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#start-btn:active {
+    background: var(--primary);
+    color: #1a1a1a;
 }
 
 /* 3. CONTENIDO PRINCIPAL (FADE IN) */
@@ -79,19 +89,17 @@ body {
     padding: 20px;
 }
 
-/* --- AJUSTE DE TAMAÑO PARA EL LOGO HERO (favicon2) --- */
+/* AJUSTE DE TAMAÑO PARA EL LOGO HERO (favicon2) */
 .hero img {
-    width: 500px; /* Tamaño imponente solicitado */
+    width: 280px; /* Tamaño optimizado para impacto visual */
     height: auto;
-    max-width: 85%; /* Seguridad para móviles pequeños */
+    max-width: 85%; 
     display: block;
     margin: 0 auto 20px auto;
     
-    /* Optimización de nitidez para imagen 2048x2048 */
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     
-    /* Animación de entrada sutil */
     opacity: 0;
     transform: translateY(15px);
     animation: fadeInUpLogo 1.2s ease-out forwards;
@@ -210,7 +218,7 @@ body {
 .btn-wa { background: #25d366; color: white; font-weight: bold; }
 .btn-pinterest { border: 1px solid #e60023; color: #e60023; }
 
-/* 8. CONTROL DE MÚSICA - ARQUITECTURA FINAL */
+/* 8. CONTROL DE MÚSICA */
 #audio-control {
     position: fixed;
     bottom: 30px;
@@ -236,11 +244,10 @@ body {
     visibility: visible;
 }
 
-/* --- ESTADO BASE DE LAS BARRAS (REPOSO) --- */
 .bar {
     display: inline-block;
     width: 4px;
-    height: 10px; /* Altura en PAUSA */
+    height: 10px;
     background-color: var(--primary);
     border-radius: 2px;
     transition: height 0.5s ease-in-out, transform 0.5s ease-in-out;
@@ -248,20 +255,9 @@ body {
     will-change: transform;
 }
 
-/* --- ANIMACIONES ACTIVAS (ASINCRÓNICAS) --- */
-.music-playing .bar:nth-child(1) { 
-    height: 18px; 
-    animation: scaleBarSide 1.1s ease-in-out infinite; 
-}
-.music-playing .bar:nth-child(2) { 
-    height: 14px; 
-    animation: scaleBarCenter 0.7s ease-in-out infinite; 
-}
-.music-playing .bar:nth-child(3) { 
-    height: 18px; 
-    animation: scaleBarSide 1.3s ease-in-out infinite; 
-    animation-delay: 0.2s; 
-}
+.music-playing .bar:nth-child(1) { height: 18px; animation: scaleBarSide 1.1s ease-in-out infinite; }
+.music-playing .bar:nth-child(2) { height: 14px; animation: scaleBarCenter 0.7s ease-in-out infinite; }
+.music-playing .bar:nth-child(3) { height: 18px; animation: scaleBarSide 1.3s ease-in-out infinite; animation-delay: 0.2s; }
 
 @keyframes scaleBarSide { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1.4); } }
 @keyframes scaleBarCenter { 0%, 100% { transform: scaleY(0.7); } 50% { transform: scaleY(1.1); } }
