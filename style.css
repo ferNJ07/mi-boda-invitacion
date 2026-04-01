@@ -13,6 +13,14 @@
     --heading-size: 1.8rem;
     --heading-align: center;
     --heading-spacing: 2px;
+
+    /* --- VARIABLES DE BOTONES --- */
+    --btn-font: 'Montserrat', sans-serif;
+    --btn-radius: 50px;           /* Estilo píldora, muy moderno */
+    --btn-weight: 600;
+    --btn-letter-spacing: 1px;
+    --btn-padding: 15px 25px;
+    --btn-transition: all 0.3s ease;
 }
 
 * {
@@ -92,6 +100,32 @@ h2 {
     opacity: 1;
 }
 
+/* Estilo base para todos los botones */
+.btn-universal {
+    display: block;
+    width: 85%;
+    max-width: 300px;
+    margin: 15px auto;
+    padding: var(--btn-padding);
+    font-family: var(--btn-font);
+    font-weight: var(--btn-weight);
+    letter-spacing: var(--btn-letter-spacing);
+    border-radius: var(--btn-radius);
+    text-align: center;
+    text-decoration: none;
+    transition: var(--btn-transition);
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* Efecto Hover general para interactividad */
+.btn-universal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    opacity: 0.9;
+}
 /* 4. HERO / PORTADA */
 .hero {
     height: 100vh;
@@ -181,26 +215,13 @@ h2 {
 }
 
 .btn-maps {
-    background-color: #1a1a1a;
+    background-color: var(--text);
     color: white;
-    flex: 1;
-    padding: 15px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
 }
 
 .btn-waze {
-    background-color: #fdfaf6;
-    color: #1a1a1a;
-    border: 1px solid #1a1a1a;
-    flex: 1;
-    padding: 15px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
+    background-color: var(--text);
+    color: white;
 }
 
 /* 6. GALERÍA MASONRY */
@@ -241,18 +262,18 @@ h2 {
 }
 
 /* 7. BOTONES RSVP / PINTEREST */
-.btn-wa, .btn-pinterest {
-    display: block;
-    width: 85%;
-    max-width: 300px;
-    margin: 15px auto;
-    padding: 15px;
-    text-decoration: none;
-    border-radius: 30px;
-    text-align: center;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+/* Botón WhatsApp */
+.btn-wa {
+    background-color: #25d366;
+    color: white;
 }
+/* Botón Pinterest / Secundarios */
+.btn-pinterest, {
+    background-color: transparent;
+    border: 1px solid var(--text);
+    color: var(--text);
+}
+
 
 .btn-wa { background: #25d366; color: white; font-weight: bold; }
 .btn-pinterest { border: 1px solid #e60023; color: #e60023; }
