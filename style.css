@@ -298,12 +298,41 @@ h2 {
     transition: transform 0.1s ease;
 }
 
-/* 7. BOTONES RSVP / PINTEREST */
-/* Botón WhatsApp */
+/* --- SECCIÓN RSVP --- */
+.rsvp {
+    padding: 60px 20px;
+    background-color: var(--white); /* Un ligero contraste con el fondo crema */
+    text-align: center;
+}
+
+.rsvp-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.rsvp p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: var(--text);
+}
+
+/* Ajuste al botón de WhatsApp para que resalte */
 .btn-wa {
     background-color: #25d366;
     color: white;
+    font-weight: 700;
+    display: inline-flex; /* Para alinear un icono si decides ponerlo después */
+    align-items: center;
+    justify-content: center;
 }
+/* 7. BOTONES RSVP / PINTEREST */
+/* Botón WhatsApp 
+.btn-wa {
+    background-color: #25d366;
+    color: white;
+} */
 /* Botón Pinterest / Secundarios */
 .btn-pinterest, {
     background-color: transparent;
