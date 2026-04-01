@@ -7,9 +7,10 @@ const audioControl = document.getElementById('audio-control');
 // 1. CONFIGURACIÓN INICIAL
 music.volume = 0.5; 
 
-// 2. ANIMACIÓN DE GALERÍA (REVEAL ON SCROLL)
-const revealImages = () => {
-    const images = document.querySelectorAll('.masonry-gallery img');
+// 2. ANIMACIÓN DE ELEMENTOS (REVEAL ON SCROLL)
+const setupRevealLogics = () => {
+    // Seleccionamos tanto las imágenes de la galería como el texto de introducción
+    const elementsToReveal = document.querySelectorAll('.masonry-gallery img, .intro-container');
     
     const observerOptions = {
         root: null,
@@ -26,7 +27,7 @@ const revealImages = () => {
         });
     }, observerOptions);
 
-    images.forEach(img => observer.observe(img));
+    elementsToReveal.forEach(el => observer.observe(el));
 };
 
 // 3. LÓGICA DE INICIO DE EXPERIENCIA
@@ -43,12 +44,11 @@ startBtn.addEventListener('click', () => {
         setTimeout(() => {
             content.classList.add('visible');
             
-            // Iniciamos la vigilancia de las imágenes del Dress Code
-            revealImages();
+            // Iniciamos la vigilancia de elementos al aparecer el contenido
+            setupRevealLogics();
             
             setTimeout(() => {
                 audioControl.classList.add('visible');
-                // Sincronizamos el icono con el estado real del audio
                 if (!music.paused) audioControl.classList.add('music-playing');
             }, 300);
             
@@ -73,7 +73,7 @@ const weddingDate = new Date("Apr 02, 2027 18:00:00").getTime();
 
 const updateCountdown = () => {
     const countdownElement = document.getElementById("countdown");
-    if (!countdownElement) return; // Evita errores si el ID no existe
+    if (!countdownElement) return;
 
     const now = new Date().getTime();
     const dist = weddingDate - now;
@@ -90,6 +90,5 @@ const updateCountdown = () => {
     countdownElement.innerHTML = `${d}d : ${h}h : ${m}m`;
 };
 
-// Ejecutar contador inmediatamente y luego cada minuto
 updateCountdown();
 setInterval(updateCountdown, 60000);
