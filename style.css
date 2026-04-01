@@ -193,7 +193,7 @@ h2 {
 
 .linea-1 {
     font-family: var(--heading-font);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--text);
@@ -203,11 +203,11 @@ h2 {
 }
 
 .linea-2 {
-    font-family: 'Meow Script', cursive;
+    font-family: 'Licorice', cursive;
     font-size: 5.0rem;
     color: var(--primary);
     /* AJUSTE CLAVE: Reducimos el margen negativo */
-    margin-top: -5px; 
+    margin-top: -10px; 
     position: relative;
     z-index: 2; /* Al frente */
     text-transform: none;
