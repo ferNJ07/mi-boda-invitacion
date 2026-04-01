@@ -81,3 +81,28 @@ h2 {
 .music-playing .bar { animation: scaleBar 0.8s ease-in-out infinite alternate; }
 
 @keyframes scaleBar { from { transform: scaleY(1); } to { transform: scaleY(2); } }
+
+/* Forzar que el contenido sea visible tras el click */
+#content {
+    display: none; 
+    opacity: 0;
+}
+
+#content.visible {
+    display: block !important;
+    opacity: 1 !important;
+    animation: fadeInContent 1s ease forwards;
+}
+
+@keyframes fadeInContent {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fix para el contador que a veces se ve gigante */
+#countdown {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: var(--white);
+}
