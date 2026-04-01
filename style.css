@@ -6,6 +6,13 @@
     --bg: #fdfaf6;      /* Crema */
     --text: #2c2c2c;
     --white: #ffffff;
+
+    /* --- VARIABLES DE TÍTULOS --- */
+    --heading-font: 'Cinzel', serif;
+    --heading-color: var(--primary);
+    --heading-size: 1.8rem;
+    --heading-align: center;
+    --heading-spacing: 2px;
 }
 
 * {
@@ -20,6 +27,17 @@ body {
     background-color: var(--bg);
     color: var(--text);
     overflow-x: hidden;
+}
+
+h2 {
+    font-family: var(--heading-font);
+    font-size: var(--heading-size);
+    color: var(--heading-color);
+    text-align: var(--heading-align);
+    letter-spacing: var(--heading-spacing);
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    width: 100%;
 }
 
 /* 2. PANTALLA DE BIENVENIDA (OVERLAY) */
@@ -194,13 +212,6 @@ body {
     margin: 0 auto;
 }
 
-.dress-code h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
-    color: var(--primary);
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
 .dress-code p {
