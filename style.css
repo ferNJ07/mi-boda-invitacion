@@ -34,7 +34,7 @@ body {
     justify-content: center;
     z-index: 1000;
     text-align: center;
-    transition: opacity 0.8s ease; /* Efecto de salida */
+    transition: opacity 0.8s ease; 
 }
 
 #overlay img {
@@ -53,9 +53,9 @@ body {
     cursor: pointer;
 }
 
-/* 3. CONTENIDO PRINCIPAL (EL TRUCO DEL FADE IN) */
+/* 3. CONTENIDO PRINCIPAL (FADE IN) */
 #content {
-    display: none; /* Oculto inicialmente para no interferir con el overlay */
+    display: none; 
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
 }
@@ -76,6 +76,33 @@ body {
     justify-content: center;
     color: var(--white);
     text-align: center;
+    padding: 20px;
+}
+
+/* --- AJUSTE DE TAMAÑO PARA EL LOGO HERO (favicon2) --- */
+.hero img {
+    width: 250px; /* Tamaño imponente solicitado */
+    height: auto;
+    max-width: 85%; /* Seguridad para móviles pequeños */
+    display: block;
+    margin: 0 auto 20px auto;
+    
+    /* Optimización de nitidez para imagen 2048x2048 */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    
+    /* Animación de entrada sutil */
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUpLogo 1.2s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUpLogo {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero h1 {
@@ -84,7 +111,7 @@ body {
     margin: 0;
 }
 
-/* UBICACIÓN */
+/* 5. UBICACIÓN */
 .ubicacion-card {
     background: white;
     padding: 35px 20px;
@@ -93,6 +120,7 @@ body {
     margin: 30px auto;
     border: 1px solid #f0f0f0;
     max-width: 90%;
+    text-align: center;
 }
 
 .lugar-nombre {
@@ -105,7 +133,7 @@ body {
 
 .map-container {
     width: 100%;
-    height: 250px; /* Un poco más alto para que sea usable */
+    height: 250px;
     background: #eee;
     border-radius: 15px;
     overflow: hidden;
@@ -114,12 +142,9 @@ body {
     border: 1px solid #eee;
 }
 
-/* Para asegurar que el iframe ocupe todo el contenedor */
 .map-container iframe {
     width: 100%;
     height: 100%;
-    filter: grayscale(0.2) contrast(1.1); /* Toque sutil para que combine con el minimalismo */
-    /* Un toque sutil para suavizar los colores de Google */
     filter: saturate(0.8) contrast(1); 
 }
 
@@ -152,7 +177,7 @@ body {
     font-weight: 600;
 }
 
-/* 5. GALERÍA MASONRY (TIPO PINTEREST) */
+/* 6. GALERÍA MASONRY */
 .masonry-gallery {
     column-count: 2;
     column-gap: 10px;
@@ -168,7 +193,7 @@ body {
     display: block;
 }
 
-/* 6. BOTONES */
+/* 7. BOTONES RSVP / PINTEREST */
 .btn-wa, .btn-pinterest {
     display: block;
     width: 85%;
@@ -185,7 +210,7 @@ body {
 .btn-wa { background: #25d366; color: white; font-weight: bold; }
 .btn-pinterest { border: 1px solid #e60023; color: #e60023; }
 
-/* 7. CONTROL DE MÚSICA - ARQUITECTURA FINAL */
+/* 8. CONTROL DE MÚSICA - ARQUITECTURA FINAL */
 #audio-control {
     position: fixed;
     bottom: 30px;
@@ -194,19 +219,18 @@ body {
     height: 50px;
     background: #ffffff;
     border-radius: 50%;
-    display: flex; /* Cambiamos de none a flex de una vez */
+    display: flex; 
     align-items: center;
     justify-content: center;
     gap: 4px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 99999; /* Por encima de TODO */
+    z-index: 99999;
     opacity: 0;
-    visibility: hidden; /* Evita que sea clickable antes de tiempo */
+    visibility: hidden; 
     transition: opacity 1s ease-in-out, visibility 1s;
 }
 
-/* Cuando se activa */
 #audio-control.visible {
     opacity: 1;
     visibility: visible;
@@ -216,14 +240,15 @@ body {
 .bar {
     display: inline-block;
     width: 4px;
-    height: 10px; /* Altura que tendrán al estar en PAUSA */
-    background-color: #d4af37;
+    height: 10px; /* Altura en PAUSA */
+    background-color: var(--primary);
     border-radius: 2px;
     transition: height 0.5s ease-in-out, transform 0.5s ease-in-out;
-    transform: scaleY(1); /* Sin escala en pausa */
+    transform: scaleY(1);
+    will-change: transform;
 }
 
-/* --- ANIMACIONES ACTIVAS (SOLO EN PLAY) --- */
+/* --- ANIMACIONES ACTIVAS (ASINCRÓNICAS) --- */
 .music-playing .bar:nth-child(1) { 
     height: 18px; 
     animation: scaleBarSide 1.1s ease-in-out infinite; 
@@ -238,6 +263,5 @@ body {
     animation-delay: 0.2s; 
 }
 
-/* Keyframes (se mantienen igual, pero asegúrate de que existan) */
 @keyframes scaleBarSide { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1.4); } }
 @keyframes scaleBarCenter { 0%, 100% { transform: scaleY(0.7); } 50% { transform: scaleY(1.1); } }
