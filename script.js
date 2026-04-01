@@ -7,12 +7,34 @@ const audioControl = document.getElementById('audio-control');
 // 1. CONFIGURACIÓN INICIAL
 music.volume = 0.5; 
 
-// 2. LÓGICA DE INICIO DE EXPERIENCIA
+// 2. ANIMACIÓN DE GALERÍA (REVEAL ON SCROLL)
+const revealImages = () => {
+    const images = document.querySelectorAll('.masonry-gallery img');
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    images.forEach(img => observer.observe(img));
+};
+
+// 3. LÓGICA DE INICIO DE EXPERIENCIA
 startBtn.addEventListener('click', () => {
     overlay.style.opacity = '0';
     
     // Intento de reproducción inmediata (necesario para iOS)
-    music.play().catch(e => console.log("Audio bloqueado por el navegador"));
+    music.play().catch(e => console.log("Audio en espera de interacción"));
 
     setTimeout(() => {
         overlay.style.display = 'none';
@@ -34,7 +56,7 @@ startBtn.addEventListener('click', () => {
     }, 800);
 });
 
-// 3. CONTROL DE AUDIO (PLAY/PAUSE)
+// 4. CONTROL DE AUDIO (PLAY/PAUSE)
 audioControl.addEventListener('click', () => {
     if (music.paused) {
         music.play().then(() => {
@@ -46,35 +68,28 @@ audioControl.addEventListener('click', () => {
     }
 });
 
-// 4. ANIMACIÓN DE GALERÍA (REVEAL ON SCROLL)
-const revealImages = () => {
-    const images = document.querySelectorAll('.masonry-gallery img');
-    
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -50px 0px', // Se activa un poco antes de que entre totalmente
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target); 
-            }
-        });
-    }, observerOptions);
-
-    images.forEach(img => observer.observe(img));
-};
-
 // 5. CUENTA REGRESIVA
 const weddingDate = new Date("Apr 02, 2027 18:00:00").getTime();
 
 const updateCountdown = () => {
+    const countdownElement = document.getElementById("countdown");
+    if (!countdownElement) return; // Evita errores si el ID no existe
+
     const now = new Date().getTime();
     const dist = weddingDate - now;
     
     if (dist < 0) {
-        document.getElementById("countdown").innerHTML = "¡LLEGÓ EL DÍA!";
+        countdownElement.innerHTML = "¡LLEGÓ EL DÍA!";
         return;
+    }
+
+    const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+    const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+
+    countdownElement.innerHTML = `${d}d : ${h}h : ${m}m`;
+};
+
+// Ejecutar contador inmediatamente y luego cada minuto
+updateCountdown();
+setInterval(updateCountdown, 60000);
