@@ -8,20 +8,24 @@ const audioControl = document.getElementById('audio-control');
 music.volume = 0.5; 
 
 startBtn.addEventListener('click', () => {
-    // 1. Iniciar desvanecimiento del overlay
+    // 1. Desvanecer overlay
     overlay.style.opacity = '0';
-    
-    // 2. Intentar reproducir música inmediatamente (importante para iOS)
-    music.play().catch(error => console.log("Esperando interacción..."));
+    music.play().catch(e => console.log("Audio play prevented"));
 
     setTimeout(() => {
         overlay.style.display = 'none';
-        content.style.display = 'block'; // Asegura que el layout se calcule
         
-        // Pequeño delay para que el navegador procese el display:block antes del opacity
+        // 2. Mostrar contenedor principal
+        content.style.display = 'block';
+        
+        // 3. Mostrar ICONO DE MÚSICA por separado para evitar errores de renderizado
+        audioControl.style.display = 'flex'; 
+
         setTimeout(() => {
             content.classList.add('visible');
-        }, 50);
+            audioControl.style.opacity = '1'; // Aparece suavemente
+            audioControl.classList.add('music-playing'); // Inicia animación
+        }, 100);
     }, 800);
 });
 
