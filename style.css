@@ -120,6 +120,14 @@ body {
 }
 
 /* 5. UBICACIÓN */
+.dress-code h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
 .ubicacion-card {
     background: white;
     padding: 35px 20px;
