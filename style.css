@@ -77,7 +77,7 @@ body {
 /* 4. HERO / PORTADA */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/portada.jpg');
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/nosotros/us_kids.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
