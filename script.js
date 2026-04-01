@@ -33,14 +33,13 @@ startBtn.addEventListener('click', () => {
 audioControl.addEventListener('click', () => {
     if (music.paused) {
         music.play();
-        audioControl.classList.add('visible');
         audioControl.classList.add('music-playing');
     } else {
         music.pause();
         audioControl.classList.remove('music-playing');
+        // Al quitar la clase, las barras vuelven automáticamente a height: 10px
     }
 });
-
 // Cuenta regresiva optimizada
 const weddingDate = new Date("Jun 30, 2025 18:00:00").getTime(); // Ajusta tu fecha aquí
 
