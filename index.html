@@ -95,12 +95,18 @@
         </section>
 
     </main>
+
     <div id="audio-control">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
     </div>
-    <audio id="bg-music" loop src="assets/site_song.mp3"></audio>
+
+    <audio id="bg-music" loop>
+        <source src="assets/site_song.mp3" type="audio/mpeg">
+    </audio>
+
     <script src="script.js"></script>
+    
 </body>
 </html>
