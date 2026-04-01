@@ -84,14 +84,14 @@ h2 {
 
 /* Forzar que el contenido sea visible tras el click */
 #content {
-    display: none; 
-    opacity: 0;
+    display: none; /* Se oculta al cargar la página */
+    opacity: 0;    /* Se prepara para el fade-in */
+    transition: opacity 0.8s ease;
 }
 
 #content.visible {
     display: block !important;
     opacity: 1 !important;
-    animation: fadeInContent 1s ease forwards;
 }
 
 @keyframes fadeInContent {
