@@ -246,19 +246,27 @@ h2 {
     margin-right: auto;
 }
 
-.masonry-gallery {
-    column-count: 2;
-    column-gap: 10px;
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
 .masonry-gallery img {
     width: 100%;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 8px; /* Un poco más curvo para suavizar */
+    margin-bottom: 15px;
     display: block;
+    filter: grayscale(20%); /* Efecto elegante */
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Esta clase se activará cuando la imagen entre en pantalla */
+.masonry-gallery img.appear {
+    opacity: 1;
+    transform: translateY(0);
+    filter: grayscale(0%);
+}
+
+.masonry-gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 /* 7. BOTONES RSVP / PINTEREST */
