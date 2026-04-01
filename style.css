@@ -204,12 +204,8 @@ h2 {
 
 .linea-2 {
     font-family: 'Licorice', cursive;
-    font-size: 5.0rem;
+    font-size: 5.5rem;
     color: var(--primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    font-weight: 400; /* Fuerza el grosor original de la fuente */
     /* AJUSTE CLAVE: Reducimos el margen negativo */
     margin-top: -10px; 
     position: relative;
