@@ -28,6 +28,7 @@ startBtn.addEventListener('click', () => {
             content.classList.add('visible');
             audioControl.style.opacity = '1';
             audioControl.classList.add('music-playing');
+            // Dentro del evento click de startBtn
         }, 100);
     }, 800);
 });
@@ -36,6 +37,7 @@ startBtn.addEventListener('click', () => {
 audioControl.addEventListener('click', () => {
     if (music.paused) {
         music.play();
+        audioControl.classList.add('visible');
         audioControl.classList.add('music-playing');
     } else {
         music.pause();
