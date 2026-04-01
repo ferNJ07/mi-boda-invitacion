@@ -81,7 +81,7 @@ body {
 
 /* --- AJUSTE DE TAMAÑO PARA EL LOGO HERO (favicon2) --- */
 .hero img {
-    width: 250px; /* Tamaño imponente solicitado */
+    width: 500px; /* Tamaño imponente solicitado */
     height: auto;
     max-width: 85%; /* Seguridad para móviles pequeños */
     display: block;
