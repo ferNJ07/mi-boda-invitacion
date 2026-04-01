@@ -204,7 +204,7 @@ h2 {
 
 .linea-2 {
     font-family: 'Licorice', cursive;
-    font-size: 5.5rem;
+    font-size: 5.0rem;
     color: var(--primary);
     /* AJUSTE CLAVE: Reducimos el margen negativo */
     margin-top: -10px; 
