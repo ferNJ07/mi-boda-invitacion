@@ -185,52 +185,44 @@ body {
 .btn-wa { background: #25d366; color: white; font-weight: bold; }
 .btn-pinterest { border: 1px solid #e60023; color: #e60023; }
 
-/* 7. CONTROL DE MÚSICA REFORZADO - VERSIÓN ASINCRÓNICA */
-.music-playing .bar {
+/* 7. CONTROL DE MÚSICA - ARQUITECTURA FINAL */
+#audio-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex; /* Cambiamos de none a flex de una vez */
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 99999; /* Por encima de TODO */
+    opacity: 0;
+    visibility: hidden; /* Evita que sea clickable antes de tiempo */
+    transition: opacity 1s ease-in-out, visibility 1s;
+}
+
+/* Cuando se activa */
+#audio-control.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.bar {
     display: inline-block;
-    width: 3px;
-    height: 18px; /* Altura base fija */
-    background-color: #d4af37; /* Dorado */
+    width: 4px;
+    background-color: #d4af37;
     border-radius: 2px;
-    will-change: transform;
 }
 
-/* --- Animaciones Individuales (Asincrónicas) --- */
-.music-playing .bar:nth-child(1) {
-    animation: scaleBarSide 1.1s ease-in-out infinite; /* Lenta y amplia */
-    -webkit-animation: scaleBarSide 1.1s ease-in-out infinite;
-}
+/* Animaciones Asincrónicas (las que te gustaron) */
+.music-playing .bar:nth-child(1) { height: 18px; animation: scaleBarSide 1.1s ease-in-out infinite; }
+.music-playing .bar:nth-child(2) { height: 14px; animation: scaleBarCenter 0.7s ease-in-out infinite; }
+.music-playing .bar:nth-child(3) { height: 18px; animation: scaleBarSide 1.3s ease-in-out infinite; animation-delay: 0.2s; }
 
-.music-playing .bar:nth-child(2) {
-    animation: scaleBarCenter 0.7s ease-in-out infinite; /* Rápida y corta */
-    -webkit-animation: scaleBarCenter 0.7s ease-in-out infinite;
-    height: 14px; /* Un poco más bajita para resaltar la central */
-}
-
-.music-playing .bar:nth-child(3) {
-    animation: scaleBarSide 1.3s ease-in-out infinite; /* Muy lenta y amplia */
-    -webkit-animation: scaleBarSide 1.3s ease-in-out infinite;
-    animation-delay: 0.2s;
-}
-
-/* --- KEYFRAMES --- */
-
-/* 1. Para las laterales (Bailan más) */
-@keyframes scaleBarSide {
-    0%, 100% { transform: scaleY(0.4); }
-    50% { transform: scaleY(1.4); } /* Se estiran MUCHO */
-}
-@-webkit-keyframes scaleBarSide {
-    0%, 100% { -webkit-transform: scaleY(0.4); }
-    50% { -webkit-transform: scaleY(1.4); }
-}
-
-/* 2. Para la central (Baila menos) */
-@keyframes scaleBarCenter {
-    0%, 100% { transform: scaleY(0.7); } /* Altura mínima mayor */
-    50% { transform: scaleY(1.1); } /* Altura máxima menor */
-}
-@-webkit-keyframes scaleBarCenter {
-    0%, 100% { -webkit-transform: scaleY(0.7); }
-    50% { -webkit-transform: scaleY(1.1); }
-}
+@keyframes scaleBarSide { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1.4); } }
+@keyframes scaleBarCenter { 0%, 100% { transform: scaleY(0.7); } 50% { transform: scaleY(1.1); } }
