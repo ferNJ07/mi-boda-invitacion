@@ -318,6 +318,21 @@ h2 {
     color: var(--text);
 }
 
+.adults-only {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem; /* Un poco más pequeña que el texto principal */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888; /* Un gris suave para que no grite visualmente */
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.adults-only u {
+    text-underline-offset: 4px; /* Separa un poco la línea del texto para que se vea limpio */
+    text-decoration-color: var(--primary); /* El subrayado en dorado une la frase con el tema de la boda */
+}
+
 /* Ajuste al botón de WhatsApp para que resalte */
 .btn-wa {
     background-color: #25d366;
