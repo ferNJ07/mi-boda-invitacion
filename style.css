@@ -120,7 +120,14 @@ body {
 }
 
 /* 5. UBICACIÓN */
-.dress-code h2 {
+.ubicacion {
+    text-align: center; /* Centra todo el texto */
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.ubicacion h2 {
     font-family: 'Cinzel', serif;
     font-size: 1.8rem;
     color: var(--primary);
