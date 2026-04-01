@@ -1,95 +1,72 @@
-const startBtn = document.getElementById('start-btn');
-const overlay = document.getElementById('overlay');
-const content = document.getElementById('content');
+/**
+ * LÓGICA DE LA INVITACIÓN - Fernando & Valeria
+ */
+
 const music = document.getElementById('bg-music');
 const audioControl = document.getElementById('audio-control');
 
-// 1. CONFIGURACIÓN INICIAL
-music.volume = 0.5; 
-
-// 2. ANIMACIÓN DE GALERÍA (REVEAL ON SCROLL)
-const revealImages = () => {
-    const images = document.querySelectorAll('.masonry-gallery img');
-    
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -50px 0px',
-        threshold: 0.1
-    };
-
+// 1. ANIMACIÓN DE IMÁGENES AL HACER SCROLL
+const initRevealEffect = () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('appear');
-                observer.unobserve(entry.target); 
+                observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    images.forEach(img => observer.observe(img));
+    document.querySelectorAll('.masonry-gallery img').forEach(img => observer.observe(img));
 };
 
-// 3. LÓGICA DE INICIO DE EXPERIENCIA
-startBtn.addEventListener('click', () => {
+// 2. INICIO DE LA EXPERIENCIA
+document.getElementById('start-btn').addEventListener('click', () => {
+    const overlay = document.getElementById('overlay');
+    const content = document.getElementById('content');
+
     overlay.style.opacity = '0';
-    
-    // Intento de reproducción inmediata (necesario para iOS)
-    music.play().catch(e => console.log("Audio en espera de interacción"));
+    music.play().catch(() => console.log("Interacción requerida para audio"));
 
     setTimeout(() => {
         overlay.style.display = 'none';
         content.style.display = 'block';
-
+        
         setTimeout(() => {
             content.classList.add('visible');
-            
-            // Iniciamos la vigilancia de las imágenes del Dress Code
-            revealImages();
-            
-            setTimeout(() => {
-                audioControl.classList.add('visible');
-                // Sincronizamos el icono con el estado real del audio
-                if (!music.paused) audioControl.classList.add('music-playing');
-            }, 300);
-            
-        }, 50);
+            initRevealEffect(); // Activa efectos de galería
+            audioControl.classList.add('visible');
+            if (!music.paused) audioControl.classList.add('music-playing');
+        }, 100);
     }, 800);
 });
 
-// 4. CONTROL DE AUDIO (PLAY/PAUSE)
+// 3. CONTROL REPRODUCTOR
 audioControl.addEventListener('click', () => {
     if (music.paused) {
-        music.play().then(() => {
-            audioControl.classList.add('music-playing');
-        }).catch(e => console.error("Error al reproducir:", e));
+        music.play();
+        audioControl.classList.add('music-playing');
     } else {
         music.pause();
         audioControl.classList.remove('music-playing');
     }
 });
 
-// 5. CUENTA REGRESIVA
+// 4. CUENTA REGRESIVA (Actualización cada minuto)
 const weddingDate = new Date("Apr 02, 2027 18:00:00").getTime();
 
-const updateCountdown = () => {
-    const countdownElement = document.getElementById("countdown");
-    if (!countdownElement) return; // Evita errores si el ID no existe
+function updateCountdown() {
+    const el = document.getElementById("countdown");
+    if (!el) return;
 
-    const now = new Date().getTime();
-    const dist = weddingDate - now;
-    
-    if (dist < 0) {
-        countdownElement.innerHTML = "¡LLEGÓ EL DÍA!";
-        return;
-    }
+    const diff = weddingDate - new Date().getTime();
+    if (diff <= 0) { el.innerHTML = "¡LLEGÓ EL DÍA!"; return; }
 
-    const d = Math.floor(dist / (1000 * 60 * 60 * 24));
-    const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
 
-    countdownElement.innerHTML = `${d}d : ${h}h : ${m}m`;
-};
+    el.innerHTML = `${d}d : ${h}h : ${m}m`;
+}
 
-// Ejecutar contador inmediatamente y luego cada minuto
 updateCountdown();
 setInterval(updateCountdown, 60000);
