@@ -117,45 +117,45 @@ body {
 .btn-wa { background: #25d366; color: white; font-weight: bold; }
 .btn-pinterest { border: 1px solid #e60023; color: #e60023; }
 
-/* CONTROL DE MÚSICA - VERSIÓN FINAL REFORZADA */
+/* 7. CONTROL DE MÚSICA - VERSIÓN FINAL REFORZADA */
 #audio-control {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.95);
+    width: 50px;
+    height: 50px;
+    background: #ffffff; /* Blanco sólido para evitar transparencia extra */
     border-radius: 50%;
-    display: none; /* Se activará desde JS */
+    display: none; /* Se activa por JS */
     align-items: center;
     justify-content: center;
-    gap: 3px;
+    gap: 4px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     z-index: 9999;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.8s ease-in-out;
 }
 
-/* Forzamos que las barritas siempre tengan presencia física */
+/* Forzamos que las barritas tengan presencia física SIEMPRE */
 .bar {
-    display: inline-block;
-    width: 3px;
-    height: 12px;
-    background-color: #d4af37; /* Color Dorado */
+    display: block !important;
+    width: 4px !important;
+    height: 14px !important; /* Altura base visible */
+    background-color: #d4af37 !important; /* Dorado */
     border-radius: 2px;
 }
 
-/* Animación activa */
+/* Animación activa con mayor prioridad */
 .music-playing .bar {
-    animation: bounce 0.8s ease-in-out infinite;
+    animation: bounceBar 0.8s ease-in-out infinite !important;
 }
 
-.music-playing .bar:nth-child(1) { animation-delay: 0.1s; }
-.music-playing .bar:nth-child(2) { animation-delay: 0.3s; }
-.music-playing .bar:nth-child(3) { animation-delay: 0.5s; }
+.music-playing .bar:nth-child(1) { animation-delay: 0.0s; }
+.music-playing .bar:nth-child(2) { animation-delay: 0.2s; }
+.music-playing .bar:nth-child(3) { animation-delay: 0.4s; }
 
-@keyframes bounce {
+@keyframes bounceBar {
     0%, 100% { height: 8px; }
-    50% { height: 20px; }
+    50% { height: 22px; }
 }
