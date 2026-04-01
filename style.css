@@ -117,16 +117,16 @@ body {
 .btn-wa { background: #25d366; color: white; font-weight: bold; }
 .btn-pinterest { border: 1px solid #e60023; color: #e60023; }
 
-/* 7. CONTROL DE MÚSICA REFORZADO */
+/* CONTROL DE MÚSICA - VERSIÓN FINAL REFORZADA */
 #audio-control {
     position: fixed;
     bottom: 30px;
     right: 30px;
     width: 45px;
     height: 45px;
-    background: rgba(255, 255, 255, 0.95); /* Blanco sólido sutil */
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 50%;
-    display: flex;
+    display: none; /* Se activará desde JS */
     align-items: center;
     justify-content: center;
     gap: 3px;
@@ -134,23 +134,19 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     z-index: 9999;
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 1s ease-in-out;
 }
 
-#audio-control.visible {
-    opacity: 1;
-}
-
-/* Las Barritas */
+/* Forzamos que las barritas siempre tengan presencia física */
 .bar {
+    display: inline-block;
     width: 3px;
-    height: 12px; /* Altura base para que no desaparezcan */
-    background-color: #d4af37; /* Tu dorado de la boda */
+    height: 12px;
+    background-color: #d4af37; /* Color Dorado */
     border-radius: 2px;
-    transition: height 0.2s ease;
 }
 
-/* ANIMACIÓN: Solo cuando la clase .music-playing esté activa */
+/* Animación activa */
 .music-playing .bar {
     animation: bounce 0.8s ease-in-out infinite;
 }
@@ -160,6 +156,6 @@ body {
 .music-playing .bar:nth-child(3) { animation-delay: 0.5s; }
 
 @keyframes bounce {
-    0%, 100% { height: 6px; }
+    0%, 100% { height: 8px; }
     50% { height: 20px; }
 }
