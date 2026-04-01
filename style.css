@@ -40,7 +40,7 @@ body {
 
 /* CORRECCIÓN: Logo de bienvenida mucho más grande */
 #overlay img {
-    width: 200px; /* Antes era 60px, ahora tiene presencia */
+    width: 300px; /* Antes era 60px, ahora tiene presencia */
     height: auto;
     margin-bottom: 30px;
     filter: brightness(0) invert(1);
