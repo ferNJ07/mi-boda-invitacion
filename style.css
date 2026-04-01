@@ -214,16 +214,24 @@ body {
     border-radius: 2px;
 }
 
-/* Animación activa con mayor prioridad */
+/* ANIMACIÓN POR ESCALA (MÁS COMPATIBLE CON MÓVILES) */
 .music-playing .bar {
-    animation: bounceBar 0.8s ease-in-out infinite !important;
+    height: 18px; /* Altura fija */
+    -webkit-animation: scaleBar 0.8s ease-in-out infinite !important;
+    animation: scaleBar 0.8s ease-in-out infinite !important;
+    will-change: transform;
 }
 
-.music-playing .bar:nth-child(1) { animation-delay: 0.0s; }
-.music-playing .bar:nth-child(2) { animation-delay: 0.2s; }
-.music-playing .bar:nth-child(3) { animation-delay: 0.4s; }
+.music-playing .bar:nth-child(1) { animation-delay: 0.0s; -webkit-animation-delay: 0.0s; }
+.music-playing .bar:nth-child(2) { animation-delay: 0.2s; -webkit-animation-delay: 0.2s; }
+.music-playing .bar:nth-child(3) { animation-delay: 0.4s; -webkit-animation-delay: 0.4s; }
 
-@keyframes bounceBar {
-    0%, 100% { height: 8px; }
-    50% { height: 22px; }
+@keyframes scaleBar {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1.2); }
+}
+
+@-webkit-keyframes scaleBar {
+    0%, 100% { -webkit-transform: scaleY(0.4); }
+    50% { -webkit-transform: scaleY(1.2); }
 }
