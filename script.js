@@ -8,28 +8,24 @@ const audioControl = document.getElementById('audio-control');
 music.volume = 0.5; 
 
 startBtn.addEventListener('click', () => {
-    // 1. Desvanecer overlay negro
     overlay.style.opacity = '0';
-    
-    // Intentar reproducir música (crítico para iOS)
-    music.play().catch(e => console.log("Audio play blocked"));
+    music.play().catch(e => console.log("Audio bloqueado"));
 
     setTimeout(() => {
         overlay.style.display = 'none';
-        
-        // 2. ACTIVAR AUDIO CONTROL (Separado del content)
-        audioControl.style.display = 'flex';
-        
-        // 3. MOSTRAR CONTENIDO
         content.style.display = 'block';
 
-        // 4. DISPARAR ANIMACIONES
+        // Pequeño delay para el contenido
         setTimeout(() => {
             content.classList.add('visible');
-            audioControl.style.opacity = '1';
-            audioControl.classList.add('music-playing');
-            // Dentro del evento click de startBtn
-        }, 100);
+            
+            // EL TRUCO: Mostramos el audio 300ms después del contenido
+            setTimeout(() => {
+                audioControl.classList.add('visible');
+                audioControl.classList.add('music-playing');
+            }, 300);
+            
+        }, 50);
     }, 800);
 });
 
