@@ -207,7 +207,7 @@ h2 {
     font-size: 5.5rem;
     color: var(--primary);
     /* AJUSTE CLAVE: Reducimos el margen negativo */
-    margin-top: -30px; 
+    margin-top: -15px; 
     position: relative;
     z-index: 2; /* Al frente */
     text-transform: none;
