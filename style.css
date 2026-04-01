@@ -212,17 +212,32 @@ body {
     visibility: visible;
 }
 
+/* --- ESTADO BASE DE LAS BARRAS (REPOSO) --- */
 .bar {
     display: inline-block;
     width: 4px;
+    height: 10px; /* Altura que tendrán al estar en PAUSA */
     background-color: #d4af37;
     border-radius: 2px;
+    transition: height 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: scaleY(1); /* Sin escala en pausa */
 }
 
-/* Animaciones Asincrónicas (las que te gustaron) */
-.music-playing .bar:nth-child(1) { height: 18px; animation: scaleBarSide 1.1s ease-in-out infinite; }
-.music-playing .bar:nth-child(2) { height: 14px; animation: scaleBarCenter 0.7s ease-in-out infinite; }
-.music-playing .bar:nth-child(3) { height: 18px; animation: scaleBarSide 1.3s ease-in-out infinite; animation-delay: 0.2s; }
+/* --- ANIMACIONES ACTIVAS (SOLO EN PLAY) --- */
+.music-playing .bar:nth-child(1) { 
+    height: 18px; 
+    animation: scaleBarSide 1.1s ease-in-out infinite; 
+}
+.music-playing .bar:nth-child(2) { 
+    height: 14px; 
+    animation: scaleBarCenter 0.7s ease-in-out infinite; 
+}
+.music-playing .bar:nth-child(3) { 
+    height: 18px; 
+    animation: scaleBarSide 1.3s ease-in-out infinite; 
+    animation-delay: 0.2s; 
+}
 
+/* Keyframes (se mantienen igual, pero asegúrate de que existan) */
 @keyframes scaleBarSide { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1.4); } }
 @keyframes scaleBarCenter { 0%, 100% { transform: scaleY(0.7); } 50% { transform: scaleY(1.1); } }
