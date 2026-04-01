@@ -41,7 +41,7 @@ audioControl.addEventListener('click', () => {
     }
 });
 // Cuenta regresiva optimizada
-const weddingDate = new Date("Jun 30, 2025 18:00:00").getTime(); // Ajusta tu fecha aquí
+const weddingDate = new Date("Apr 02, 2027 18:00:00").getTime(); // Ajusta tu fecha aquí
 
 setInterval(() => {
     const now = new Date().getTime();
