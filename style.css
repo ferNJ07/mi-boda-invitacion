@@ -246,27 +246,56 @@ h2 {
     margin-right: auto;
 }
 
-.masonry-gallery img {
-    width: 100%;
-    border-radius: 8px; /* Un poco más curvo para suavizar */
-    margin-bottom: 15px;
-    display: block;
-    filter: grayscale(20%); /* Efecto elegante */
-    transition: all 0.5s ease;
-    opacity: 0;
-    transform: translateY(20px);
+/* GALERÍA MASONRY ACTUALIZADA */
+.masonry-gallery {
+    column-count: 2;
+    column-gap: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-/* Esta clase se activará cuando la imagen entre en pantalla */
+.masonry-gallery img {
+    width: 100%;
+    border-radius: 8px; 
+    margin-bottom: 10px;
+    display: block;
+    
+    /* Estado inicial para la animación de revelado */
+    opacity: 0;
+    filter: grayscale(20%) blur(5px);
+    transform: translateY(30px);
+    
+    /* Optimización para iPhone: Manejo de hardware y suavidad */
+    will-change: transform, opacity;
+    transition: 
+        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.8s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Clase activada por el Intersection Observer en JS */
 .masonry-gallery img.appear {
     opacity: 1;
     transform: translateY(0);
-    filter: grayscale(0%);
+    filter: grayscale(0%) blur(0);
 }
 
-.masonry-gallery img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+/* Interacción táctil y Hover */
+@media (hover: hover) {
+    .masonry-gallery img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        z-index: 2;
+        position: relative;
+    }
+}
+
+/* Ajuste específico para evitar saltos en móviles al tocar */
+.masonry-gallery img:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
 }
 
 /* 7. BOTONES RSVP / PINTEREST */
