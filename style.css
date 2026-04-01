@@ -186,6 +186,34 @@ body {
 }
 
 /* 6. GALERÍA MASONRY */
+/* --- ESTILO CENTRADO PARA EL DRESS CODE --- */
+.dress-code {
+    text-align: center; /* Centra todo el texto */
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.dress-code h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dress-code p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .masonry-gallery {
     column-count: 2;
     column-gap: 10px;
