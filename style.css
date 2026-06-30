@@ -162,12 +162,23 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin: 0 auto;
     position: relative;
     
-    /* Configuración de Imagen de Fondo General Adaptable */
-    background-image: url('assets/fondo-general-estatico4.png');
-    background-size: cover;          /* Obliga a la imagen a cubrir toda la pantalla sin deformarse */
-    background-position: center;     /* Centra la textura perfectamente */
-    background-repeat: no-repeat;
-    background-attachment: scroll;   /* Permite que el fondo acompañe el scroll de forma natural en móviles */
+    /* CONFIGURACIÓN DEL FONDO CON "ZOOM ALEJADO" */
+    background-image: url('assets/images/fondo-general-estatico4.png');
+    
+    /* 
+       Al usar un porcentaje (ej. 40% o 50%), le indicamos al navegador el ancho que debe ocupar la imagen.
+       A menor porcentaje, más "lejos" se verá la textura y el patrón será más fino y detallado.
+       'auto' mantiene la proporción de la altura de forma automática.
+    */
+    background-size: 50% auto; 
+    
+    /* Activamos la repetición para que cubra toda la pantalla como un tapiz continuo continuo */
+    background-repeat: repeat; 
+    
+    /* Centramos el punto de inicio del patrón */
+    background-position: center top; 
+    
+    background-attachment: scroll; /* Acompaña el scroll de forma natural en móviles */
 }
 
 .main-container.hidden {
