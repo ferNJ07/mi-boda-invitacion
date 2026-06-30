@@ -154,46 +154,109 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   5. CONTENIDO DE LA INVITACIÓN REAL
+   5.ESTRUCTURA DE SECCIONES INTERNAS (FONDO ADAPTABLE)
    ========================================================================== */
+
+/* El contenedor principal puede llevar el fondo estático general */
 .main-container {
     width: 100%;
-    max-width: 480px; /* Centrado fluido simulando pantalla móvil en PC */
+    max-width: 480px; 
     margin: 0 auto;
-    background: var(--primary-bg);
+    background-color: var(--primary-bg); /* Fondo blanco por defecto */
+    /* Si deseas una imagen estática general para toda la invitación, la activarías aquí: */
+    /* background-image: url('assets/images/fondo-general-estatico.jpg'); */
+    /* background-size: cover; background-attachment: scroll; */
     position: relative;
 }
 
-.main-container.hidden {
-    display: none;
-}
-
+/* Modificación del wrapper de detalles */
 .invitation-details {
-    padding: 60px 30px;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
     transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-.hidden-content {
-    opacity: 0;
-    transform: translateY(20px);
+/* Estilo común para CADA una de las secciones de la invitación */
+.invitation-section {
+    width: 100%;
+    min-height: 80vh; /* Cada sección toma gran parte de la pantalla móvil */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 24px;
+    border-bottom: 1px solid var(--border-color); /* Separador sutil minimalista */
+    
+    /* Propiedades listas para fondos fijos en el futuro (Estilo Parallax sutil) */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent; /* Transparente por ahora para ver el fondo estático general */
 }
 
-.fade-in-content {
-    opacity: 1;
-    transform: translateY(0);
+/* Contenedor interno para centrar los textos y elementos */
+.section-content {
+    width: 100%;
+    text-align: center;
 }
 
-.invitation-details h2 {
+/* ==========================================================================
+   RESERVAS PARA CAMBIOS DE BACKGROUND FUTUROS
+   (Aquí es donde aplicarás los fondos específicos cuando lo requieras)
+   ========================================================================== */
+.section-inicio {
+    /* Listo para un fondo único en el futuro, ej: background-color: #f9f9f9; */
+}
+
+.section-contador {
+    /* Listo para un acento futuro */
+}
+
+.section-ubicacion {
+    /* Listo para imagen o color */
+}
+
+.section-regalos {
+}
+
+.section-confirmacion {
+    border-bottom: none; /* La última sección no lleva borde inferior */
+}
+
+/* ==========================================================================
+   ESTILOS TEXTOS INTERNOS
+   ========================================================================== */
+.main-wedding-title {
     font-family: var(--font-titles);
-    font-size: 2.2rem;
+    font-size: 2.4rem;
+    font-weight: 300;
     color: var(--accent-color-1);
-    margin-bottom: 20px;
-    font-weight: 400;
+    margin: 15px 0;
+}
+
+.quote {
+    font-family: var(--font-titles);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.placeholder-box {
+    border: 1px dashed var(--text-muted);
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.btn-accent-placeholder {
+    background-color: var(--text-main);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    margin-top: 20px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
     letter-spacing: 1px;
+    cursor: pointer;
 }
