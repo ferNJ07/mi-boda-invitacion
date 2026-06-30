@@ -59,7 +59,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     /* Configuración de la Imagen de Fondo con Capa de Contraste */
     background-image: 
         linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), /* Filtro oscuro para legibilidad del texto */
-        url('assets/images/fondo-splash.jpg'); /* Asegúrate de subir tu foto con este nombre y extensión */
+        url('assets/fondo-splash.jpg'); /* Asegúrate de subir tu foto con este nombre y extensión */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
