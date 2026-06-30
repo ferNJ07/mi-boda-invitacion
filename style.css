@@ -1,3 +1,49 @@
+
+/* ==========================================================================
+   BOTÓN FLOTANTE DE CONTROL DE AUDIO (.MP3)
+   ========================================================================== */
+.audio-control-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: var(--text-main);
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 6000; /* Por encima de las secciones pero no interfiere con pantallas de carga */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px); /* Efecto esmerilado translúcido moderno */
+    transition: all 0.3s ease;
+}
+
+/* Cambios visuales rápidos cuando está oculto o silenciado */
+.audio-control-btn.hidden {
+    display: none !important;
+}
+
+.audio-control-btn.muted-active {
+    background-color: var(--text-main);
+    color: #ffffff;
+}
+
+.audio-control-btn svg {
+    transition: transform 0.2s ease;
+}
+
+.audio-control-btn:active {
+    transform: scale(0.92);
+}
+
+/* Ocultar iconos de forma dinámica */
+.audio-control-btn .hidden {
+    display: none !important;
+}
 /* ==========================================================================
    1. VARIABLES Y COLORES (Black & White + 2 Espacios para Acentos Futuros)
    ========================================================================== */
