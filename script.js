@@ -1,57 +1,75 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Selección de elementos del DOM
     const btnEntrar = document.getElementById("btn-entrar");
     const splashScreen = document.getElementById("splash-screen");
     const mainContent = document.getElementById("main-content");
     const videoContainer = document.getElementById("video-fullscreen-container");
     const video = document.getElementById("wedding-video");
     const invitationDetails = document.getElementById("invitation-details");
+    
+    // Nuevos elementos de audio
+    const bgMusic = document.getElementById("bg-music");
+    const btnAudioControl = document.getElementById("btn-audio-control");
+    const iconPlaying = document.querySelector(".icon-playing");
+    const iconMuted = document.querySelector(".icon-muted");
 
-    // Forzar que el video esté listo en segundo plano para evitar pantallas negras
+    // Forzar video e instrucciones de carga listos en background
+    video.muted = true; 
     video.load();
+    bgMusic.load();
 
     /**
      * Paso 1: Clic en el botón "Abrir Invitación"
      */
     btnEntrar.addEventListener("click", () => {
-        // Desvanecer la pantalla de bienvenida (Splash)
         splashScreen.classList.add("fade-out");
-        
-        // Hacer visible el contenedor del video e invitación
         mainContent.classList.remove("hidden");
 
-        // SECUENCIA CRÍTICA PARA PIXEL / CHROMIUM PURE:
-        // 1. Iniciamos la reproducción manteniendo el 'muted' nativo del HTML
-        video.play().then(() => {
-            // 2. Una vez que el dispositivo confirma que el video corre, activamos el audio de forma segura
-            video.muted = false;
+        // Reproducir video (estrictamente silenciado para compatibilidad absoluta en Pixel/iPhone)
+        video.muted = true;
+        video.play().catch(err => console.log("Video autoplay bloqueado:", err));
+
+        // INICIAR LA MÚSICA EN MP3 TRAS LA INTERACCIÓN DEL USUARIO
+        bgMusic.play().then(() => {
+            // Mostrar el botón flotante de audio solo cuando la música empiece con éxito
+            btnAudioControl.classList.remove("hidden");
         }).catch(error => {
-            console.log("Error en reproducción inicial, reintentando con desmutado directo:", error);
-            // Callback de respaldo si el dispositivo viene de un estado de ahorro de batería estricto
-            video.muted = false;
-            video.play();
+            console.log("El navegador bloqueó el audio inicial:", error);
         });
 
-        // Remover el Splash del flujo tras terminar su transición CSS
         setTimeout(() => {
             splashScreen.style.display = "none";
         }, 800);
     });
 
     /**
-     * Paso 2: El video termina su reproducción automáticamente
+     * Paso 2: El video termina automáticamente y revela la invitación
      */
     video.addEventListener("ended", () => {
-        // Desvanecer el contenedor del video a pantalla completa
         videoContainer.classList.add("fade-out");
-
-        // Revelar suavemente la información de la invitación (efecto fade-in)
         invitationDetails.classList.remove("hidden-content");
         invitationDetails.classList.add("fade-in-content");
 
-        // Remover el contenedor de video del flujo para liberar rendimiento móvil
         setTimeout(() => {
             videoContainer.style.display = "none";
         }, 800);
+    });
+
+    /**
+     * Paso 3: Lógica del Botón Mute / Unmute Flotante
+     */
+    btnAudioControl.addEventListener("click", () => {
+        if (bgMusic.paused) {
+            // Si estaba pausado, lo reproducimos
+            bgMusic.play();
+            iconPlaying.classList.remove("hidden");
+            iconMuted.classList.add("hidden");
+            btnAudioControl.classList.remove("muted-active");
+        } else {
+            // Si estaba reproduciéndose, lo pausamos
+            bgMusic.pause();
+            iconPlaying.classList.add("hidden");
+            iconMuted.classList.remove("hidden");
+            btnAudioControl.classList.add("muted-active");
+        }
     });
 });
