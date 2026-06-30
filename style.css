@@ -46,7 +46,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   3. PANTALLA DE BIENVENIDA (SPLASH SCREEN)
+   3. PANTALLA DE BIENVENIDA (SPLASH SCREEN CON IMAGEN DE FONDO)
    ========================================================================== */
 .splash-container {
     position: fixed;
@@ -55,7 +55,15 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     width: 100vw;
     height: 100vh;
     height: 100dvh; /* Altura dinámica para navegadores móviles */
-    background-color: var(--secondary-bg);
+    
+    /* Configuración de la Imagen de Fondo con Capa de Contraste */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), /* Filtro oscuro para legibilidad del texto */
+        url('assets/images/fondo-splash.jpg'); /* Asegúrate de subir tu foto con este nombre y extensión */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
     color: #ffffff;
     display: flex;
     justify-content: center;
