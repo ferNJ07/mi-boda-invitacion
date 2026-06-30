@@ -17,12 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // Hacer visible el contenedor del video e invitación
         mainContent.classList.remove("hidden");
 
-        // Iniciar la reproducción del video
+        // Activamos el sonido justo tras la acción del usuario y reproducimos
+        video.muted = false;
         video.play().catch(error => {
-            console.log("La reproducción del video fue bloqueada o falló:", error);
+            console.log("La reproducción con audio fue bloqueada por el navegador:", error);
+            // Intentar reproducir en silencio si falla catastróficamente
+            video.muted = true;
+            video.play();
         });
 
-        // Limpieza: Remover el Splash del flujo visual tras terminar su animación
+        // Remover el Splash del flujo tras terminar su transición CSS
         setTimeout(() => {
             splashScreen.style.display = "none";
         }, 800);
@@ -39,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         invitationDetails.classList.remove("hidden-content");
         invitationDetails.classList.add("fade-in-content");
 
-        // Limpieza: Remover el contenedor de video del flujo para liberar rendimiento móvil
+        // Remover el contenedor de video del flujo para liberar rendimiento móvil
         setTimeout(() => {
             videoContainer.style.display = "none";
         }, 800);
