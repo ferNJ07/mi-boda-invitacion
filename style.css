@@ -1,499 +1,154 @@
-/* 1. FUENTES Y VARIABLES */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Licorice&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN DE COLORES (Adaptable a futuros acentos)
+   ========================================================================== */
 :root {
-    --primary: #d4af37; /* Dorado */
-    --bg: #fdfaf6;      /* Crema */
-    --text: #2c2c2c;
-    --white: #ffffff;
+    /* Colores Base (Black & White) */
+    --primary-bg: #ffffff;       /* Fondo principal claro */
+    --secondary-bg: #0a0a0a;     /* Fondo oscuro para splash o secciones */
+    --text-main: #111111;        /* Texto principal */
+    --text-muted: #666666;       /* Texto secundario o citas */
+    --border-color: #e0e0e0;     /* Líneas sutiles de separación */
 
-    /* --- VARIABLES DE TÍTULOS --- */
-    --heading-font: 'Cinzel', serif;
-    --heading-color: var(--primary);
-    --heading-size: 1.8rem;
-    --heading-align: center;
-    --heading-spacing: 2px;
-
-    /* --- VARIABLES DE BOTONES --- */
-    --btn-font: 'Montserrat', sans-serif;
-    --btn-radius: 50px;           /* Estilo píldora, muy moderno */
-    --btn-weight: 600;
-    --btn-letter-spacing: 1px;
-    --btn-padding: 15px 25px;
-    --btn-transition: all 0.3s ease;
+    /* Espacio reservado para los 2 colores de acento futuros */
+    /* Actualmente configurados en negro/gris para mantener el Black & White */
+    --accent-color-1: #111111;   /* Ej. Futuro Oro, Champaña, etc. */
+    --accent-color-2: #555555;   /* Ej. Futuro Verde Oliva, Vino, etc. */
+    
+    /* Tipografías */
+    --font-titles: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+/* ==========================================================================
+   2. RESETS Y OPTIMIZACIÓN MÓVIL (iOS & Android)
+   ========================================================================== */
 * {
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
+    font-family: var(--font-body);
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Evita el scroll horizontal molesto en móviles */
+    overflow-x: hidden; 
 }
 
-h2 {
-    font-family: var(--heading-font);
-    font-size: var(--heading-size);
-    color: var(--heading-color);
-    text-align: var(--heading-align);
-    letter-spacing: var(--heading-spacing);
-    text-transform: uppercase;
-    margin-bottom: 25px;
+/* ==========================================================================
+   3. PANTALLA DE BIENVENIDA (SPLASH SCREEN)
+   ========================================================================== */
+.splash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--secondary-bg); /* Fondo Negro elegante */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 20px;
+    /* Transición suave para cuando se oculte */
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Clase que aplicará JS para desvanecer la pantalla */
+.splash-container.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    max-width: 400px;
     width: 100%;
 }
 
-/* 2. PANTALLA DE BIENVENIDA (OVERLAY) */
-#overlay {
-    position: fixed;
-    top: 0; left: 0; 
-    width: 100%; height: 100%;
-    background: #1a1a1a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    text-align: center;
-    transition: opacity 0.8s ease; 
-    padding: 20px;
+.wedding-title {
+    font-family: var(--font-titles);
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
-/* CORRECCIÓN: Logo de bienvenida mucho más grande */
-#overlay img {
-    width: 300px; /* Antes era 60px, ahora tiene presencia */
-    height: auto;
-    margin-bottom: 30px;
-    filter: brightness(0) invert(1);
-    image-rendering: -webkit-optimize-contrast;
+.wedding-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #aaaaaa;
+    margin-bottom: 40px;
 }
 
-#start-btn {
+/* Botón Elegante con uso de la variable de acento */
+.btn-elegant {
     background: transparent;
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    padding: 12px 25px;
-    font-family: 'Cinzel', serif;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 14px 36px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-#start-btn:active {
-    background: var(--primary);
-    color: #1a1a1a;
+/* Al hacer hover o clic (Efecto sutil) */
+.btn-elegant:hover, .btn-elegant:active {
+    background-color: #ffffff;
+    color: var(--secondary-bg);
 }
 
-/* 3. CONTENIDO PRINCIPAL (FADE IN) */
-#content {
-    display: none; 
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-#content.visible {
+/* ==========================================================================
+   4. CONTENIDO PRINCIPAL E INTEGRACIÓN DE VIDEO
+   ========================================================================== */
+.main-container {
     opacity: 1;
+    transition: opacity 1s ease;
+    max-width: 480px; /* Ancho máximo estándar de un smartphone para simular app */
+    margin: 0 auto;  /* Centra la invitación en pantallas más grandes o tablets */
+    background: var(--primary-bg);
 }
 
-/* Estilo base para todos los botones */
-.btn-universal {
-    display: block;
-    width: 85%;
-    max-width: 300px;
-    margin: 15px auto;
-    padding: var(--btn-padding);
-    font-family: var(--btn-font);
-    font-weight: var(--btn-weight);
-    letter-spacing: var(--btn-letter-spacing);
-    border-radius: var(--btn-radius);
-    text-align: center;
-    text-decoration: none;
-    transition: var(--btn-transition);
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-size: 0.8rem;
+.main-container.hidden {
+    display: none;
+    opacity: 0;
 }
 
-/* Efecto Hover general para interactividad */
-.btn-universal:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    opacity: 0.9;
-}
-/* 4. HERO / PORTADA */
-.hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/nosotros/us_kids.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    text-align: center;
-    padding: 20px;
+/* Contenedor del video optimizado para vertical (Mobile Aspect Ratio) */
+.video-section {
+    width: 100%;
+    position: relative;
+    background-color: #000;
+    line-height: 0; /* Remueve espacios vacíos debajo del video */
 }
 
-/* AJUSTE DE TAMAÑO PARA EL LOGO HERO (favicon2) */
-.hero img {
-    width: 280px; /* Tamaño optimizado para impacto visual */
+video {
+    width: 100%;
     height: auto;
-    max-width: 85%; 
-    display: block;
-    margin: 0 auto 20px auto;
-    
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    
-    opacity: 0;
-    transform: translateY(15px);
-    animation: fadeInUpLogo 1.2s ease-out forwards;
-    animation-delay: 0.3s;
+    object-fit: cover;
 }
 
-@keyframes fadeInUpLogo {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    margin: 0;
-}
-
-/* --- SECCIÓN INTRODUCCIÓN --- */
-/* Estado inicial de la introducción */
-.intro-container {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-}
-
-/* Estado cuando se hace visible */
-.intro-container.appear {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.introduccion {
-    padding: 80px 20px;
-    text-align: center;
-    background-color: var(--bg);
-}
-
-.intro-container {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.titulo-doble {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 50px;
-    padding-top: 20px; /* Espacio extra arriba para que la cursiva no se corte */
-}
-
-.linea-1 {
-    font-family: var(--heading-font);
-    font-size: 1.3rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--text);
-    position: relative;
-    z-index: 1; /* Fondo */
-    line-height: 1.2;
-}
-
-.linea-2 {
-    font-family: 'Licorice', cursive;
-    font-size: 5.0rem;
-    color: var(--primary);
-    /* AJUSTE CLAVE: Reducimos el margen negativo */
-    margin-top: -10px; 
-    position: relative;
-    z-index: 2; /* Al frente */
-    text-transform: none;
-    line-height: 1;
-    display: block;
-    width: 100%;
-}
-
-.descripcion-intro {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text);
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-/* 5. UBICACIÓN */
-.ubicacion-card {
-    background: white;
-    padding: 35px 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin: 30px auto;
-    border: 1px solid #f0f0f0;
-    max-width: 90%;
+/* Sección de detalles de ejemplo */
+.invitation-details {
+    padding: 60px 30px;
     text-align: center;
 }
 
-.lugar-nombre {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: var(--text);
-    margin: 10px 0 5px 0;
-}
-
-.map-container {
-    width: 100%;
-    height: 250px;
-    background: #eee;
-    border-radius: 15px;
-    overflow: hidden;
-    margin: 20px 0;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-    border: 1px solid #eee;
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    filter: saturate(0.8) contrast(1); 
-}
-
-/* Estilo para el nuevo botón de Calendario */
-.btn-calendar {
-    background-color: transparent;
-    border: 1px solid var(--text);
-    color: var(--text);
-}
-
-/* Ajuste para que los botones en la sección de ubicación se apilen correctamente en móviles */
-.botones-maps {
-    display: flex;
-    flex-direction: column; /* Cambiamos a columna para que no se vean apretados */
-    gap: 10px;
-    margin-top: 25px;
-    align-items: center;
-}
-
-.botones-maps .btn-universal {
-    margin: 0; /* Quitamos el margen automático para controlarlo con el gap */
-    width: 100%; /* Que ocupen el mismo ancho */
-}
-
-.btn-maps {
-    background-color: var(--text);
-    color: white;
-}
-
-.btn-waze {
-    background-color: var(--text);
-    color: white;
-}
-
-/* 6. GALERÍA MASONRY */
-/* --- ESTILO CENTRADO PARA EL DRESS CODE --- */
-.dress-code {
-    text-align: center; /* Centra todo el texto */
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-}
-
-.dress-code p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text);
-    margin-bottom: 25px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* GALERÍA MASONRY ACTUALIZADA */
-.masonry-gallery {
-    column-count: 2;
-    column-gap: 10px;
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.masonry-gallery img {
-    width: 100%;
-    border-radius: 8px; 
-    margin-bottom: 10px;
-    display: block;
-    
-    /* Estado inicial para la animación de revelado */
-    opacity: 0;
-    filter: grayscale(20%) blur(5px);
-    transform: translateY(30px);
-    
-    /* Optimización para iPhone: Manejo de hardware y suavidad */
-    will-change: transform, opacity;
-    transition: 
-        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-        filter 0.8s ease,
-        box-shadow 0.3s ease;
-}
-
-/* Clase activada por el Intersection Observer en JS */
-.masonry-gallery img.appear {
-    opacity: 1;
-    transform: translateY(0);
-    filter: grayscale(0%) blur(0);
-}
-
-/* Interacción táctil y Hover */
-@media (hover: hover) {
-    .masonry-gallery img:hover {
-        transform: scale(1.03);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        z-index: 2;
-        position: relative;
-    }
-}
-
-/* Ajuste específico para evitar saltos en móviles al tocar */
-.masonry-gallery img:active {
-    transform: scale(0.98);
-    transition: transform 0.1s ease;
-}
-
-/* --- SECCIÓN RSVP --- */
-.rsvp {
-    padding: 60px 20px;
-    background-color: var(--white); /* Un ligero contraste con el fondo crema */
-    text-align: center;
-}
-
-.rsvp-container {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.rsvp p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    color: var(--text);
-}
-
-.adults-only {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem; /* Un poco más pequeña que el texto principal */
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #888; /* Un gris suave para que no grite visualmente */
-    margin-bottom: 25px;
-    font-style: italic;
-}
-
-.adults-only u {
-    text-underline-offset: 4px; /* Separa un poco la línea del texto para que se vea limpio */
-    text-decoration-color: var(--primary); /* El subrayado en dorado une la frase con el tema de la boda */
-}
-
-/* Ajuste al botón de WhatsApp para que resalte */
-.btn-wa {
-    background-color: #25d366;
-    color: white;
-    font-weight: 700;
-    display: inline-flex; /* Para alinear un icono si decides ponerlo después */
-    align-items: center;
-    justify-content: center;
-}
-/* 7. BOTONES RSVP / PINTEREST */
-/* Botón WhatsApp 
-.btn-wa {
-    background-color: #25d366;
-    color: white;
-} */
-/* Botón Pinterest / Secundarios */
-.btn-pinterest, {
-    background-color: transparent;
-    border: 1px solid var(--text);
-    color: var(--text);
-}
-
-
-.btn-wa { background: #25d366; color: white; font-weight: bold; }
-.btn-pinterest { border: 1px solid #e60023; color: #e60023; }
-
-/* 8. CONTROL DE MÚSICA */
-#audio-control {
-    position: fixed; /* Asegura que flote sobre el contenido */
-    bottom: 20px;    /* Distancia desde abajo */
-    right: 20px;     /* Distancia desde la derecha */
-    width: 50px;
-    height: 50px;
-    background: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 99999; /* El número más alto para que nada lo tape */
-    
-    /* Estado inicial para la animación de entrada */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s ease, visibility 0.8s, transform 0.3s ease;
-}
-
-/* Esta clase la añade el JS después de que el usuario inicia la experiencia */
-#audio-control.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Estado base de las barras (Pausado) */
-.bar {
-    width: 4px;
-    height: 10px;
-    background-color: var(--primary);
-    border-radius: 2px;
-    transition: height 0.3s ease;
-}
-
-/* Solo se animan cuando el contenedor tiene la clase .music-playing */
-.music-playing .bar:nth-child(1) { 
-    animation: scaleBar 1.1s ease-in-out infinite; 
-}
-.music-playing .bar:nth-child(2) { 
-    animation: scaleBar 0.7s ease-in-out infinite; 
-    animation-delay: 0.1s;
-}
-.music-playing .bar:nth-child(3) { 
-    animation: scaleBar 1.3s ease-in-out infinite; 
-    animation-delay: 0.2s; 
-}
-
-/* Una sola animación simplificada para todas */
-@keyframes scaleBar {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(2); }
+.invitation-details h2 {
+    font-family: var(--font-titles);
+    font-size: 2.2rem;
+    color: var(--accent-color-1); /* Preparado para el color de acento futuro */
+    margin-bottom: 20px;
+    font-weight: 400;
 }
