@@ -169,7 +169,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
        Regresamos a un valor intermedio (ej. 55%) para que las arrugas del papel 
        no se vean gigantes ni borrosas. Ajusta este % a tu gusto para alejar o acercar.
     */
-    background-size: 55% auto; 
+    background-size: 100% auto; 
     
     /* 3. REPETICIÓN INFINITA VERTICAL PERFECTA:
        Se repite suavemente hacia abajo (eje Y). Como tu IA alineó los bordes,
