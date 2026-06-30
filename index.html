@@ -17,19 +17,22 @@
     </div>
 
     <main id="main-content" class="main-container hidden">
-        
-        <section class="video-section">
-            <video id="wedding-video" width="100%" playsinline>
-                <source src="assets/videos/tu_video.mp4" type="video/mp4">
-                Tu navegador no soporta videos.
-            </video>
-        </section>
+    
+    <!-- Sección del Video configurada a Pantalla Completa Inicial -->
+    <section id="video-fullscreen-container" class="video-fullscreen">
+        <video id="wedding-video" playsinline preload="auto">
+            <source src="assets/videos/tu_video.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </section>
 
-        <section class="invitation-details">
-            <h2>Nos Casamos</h2>
-        </section>
+    <!-- La Invitación Real (Se revela al terminar el video) -->
+    <div id="invitation-details" class="invitation-details hidden-content">
+        <h2>Nos Casamos</h2>
+        <!-- Aquí continuará el resto de la información -->
+    </div>
 
-    </main>
+</main>
 
     <script src="script.js"></script>
 </body>
