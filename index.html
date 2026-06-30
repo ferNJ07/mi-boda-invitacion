@@ -2,9 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Invitación de Boda</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,22 +20,19 @@
     </div>
 
     <main id="main-content" class="main-container hidden">
-    
-    <!-- Sección del Video configurada a Pantalla Completa Inicial -->
-    <section id="video-fullscreen-container" class="video-fullscreen">
-        <video id="wedding-video" playsinline preload="auto">
-            <source src="assets/tu_video2.mp4" type="video/mp4">
-            Tu navegador no soporta video.
-        </video>
-    </section>
+        
+        <section id="video-fullscreen-container" class="video-fullscreen">
+            <video id="wedding-video" playsinline muted preload="auto">
+                <source src="assets/videos/tu_video.mp4" type="video/mp4">
+                Tu navegador no soporta video.
+            </video>
+        </section>
 
-    <!-- La Invitación Real (Se revela al terminar el video) -->
-    <div id="invitation-details" class="invitation-details hidden-content">
-        <h2>Nos Casamos</h2>
-        <!-- Aquí continuará el resto de la información -->
-    </div>
+        <div id="invitation-details" class="invitation-details hidden-content">
+            <h2>Nos Casamos</h2>
+            </div>
 
-</main>
+    </main>
 
     <script src="script.js"></script>
 </body>
