@@ -162,23 +162,31 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin: 0 auto;
     position: relative;
     
-    /* CONFIGURACIÓN DEL FONDO CON "ZOOM ALEJADO" */
+    /* 1. COLOR DE RESPALDO ELEGANTE: 
+       Un tono marfil muy suave (#fcfbfa) que rellena cualquier espacio 
+       y elimina los cortes abruptos de luz.
+    */
+    background-color: #fcfbfa; 
+
+    /* 2. TU TEXTURA ORGANIZADA */
     background-image: url('assets/fondo-general-estatico4.png');
     
-    /* 
-       Al usar un porcentaje (ej. 40% o 50%), le indicamos al navegador el ancho que debe ocupar la imagen.
-       A menor porcentaje, más "lejos" se verá la textura y el patrón será más fino y detallado.
-       'auto' mantiene la proporción de la altura de forma automática.
+    /* 3. ANCHO TOTAL Y ALTO AUTOMÁTICO:
+       '100%' obliga a la imagen a ocupar todo el ancho del celular eliminando las rayas laterales.
+       'auto' mantiene la proporción real y fina de las arrugas del papel.
     */
-    background-size: 50% auto; 
+    background-size: 100% auto; 
     
-    /* Activamos la repetición para que cubra toda la pantalla como un tapiz continuo continuo */
-    background-repeat: repeat; 
+    /* 4. BLOQUEO HORIZONTAL REVOLUCIONARIO:
+       'repeat-y' significa: Repetirse ÚNICAMENTE de arriba hacia abajo (eje Y). 
+       Está estrictamente prohibido repetirse hacia los lados (eje X).
+    */
+    background-repeat: repeat-y; 
     
-    /* Centramos el punto de inicio del patrón */
+    /* Centramos el punto de inicio en la parte superior */
     background-position: center top; 
     
-    background-attachment: scroll; /* Acompaña el scroll de forma natural en móviles */
+    background-attachment: scroll; /* Acompaña el desplazamiento móvil con fluidez */
 }
 
 .main-container.hidden {
