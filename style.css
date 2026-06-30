@@ -154,22 +154,26 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   5.ESTRUCTURA DE SECCIONES INTERNAS (FONDO ADAPTABLE)
+   5. CONTENIDO DE LA INVITACIÓN REAL (CON FONDO ADAPTABLE DE ALTA PRECISIÓN)
    ========================================================================== */
-
-/* El contenedor principal puede llevar el fondo estático general */
 .main-container {
     width: 100%;
-    max-width: 480px; 
+    max-width: 480px; /* Centrado fluido simulando pantalla móvil en PC */
     margin: 0 auto;
-    /* background-color: var(--primary-bg); /* Fondo blanco por defecto */
-    /* Si deseas una imagen estática general para toda la invitación, la activarías aquí: */
-    background-image: url('assets/fondo-general-estatico2.png');
-    background-size: cover; background-attachment: scroll;
     position: relative;
+    
+    /* Configuración de Imagen de Fondo General Adaptable */
+    background-image: url('assets/fondo-general-estatico2.png');
+    background-size: cover;          /* Obliga a la imagen a cubrir toda la pantalla sin deformarse */
+    background-position: center;     /* Centra la textura perfectamente */
+    background-repeat: no-repeat;
+    background-attachment: scroll;   /* Permite que el fondo acompañe el scroll de forma natural en móviles */
 }
 
-/* Modificación del wrapper de detalles */
+.main-container.hidden {
+    display: none;
+}
+
 .invitation-details {
     width: 100%;
     transition: opacity 1.2s ease, transform 1.2s ease;
@@ -178,25 +182,34 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 /* Estilo común para CADA una de las secciones de la invitación */
 .invitation-section {
     width: 100%;
-    min-height: 80vh; /* Cada sección toma gran parte de la pantalla móvil */
+    min-height: 100vh;  /* Soporte base */
+    min-height: 100dvh; /* Altura dinámica exacta para ignorar barras de Safari/Chrome */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 24px;
-    border-bottom: 1px solid var(--border-color); /* Separador sutil minimalista */
+    padding: 40px 24px;
     
-    /* Propiedades listas para fondos fijos en el futuro (Estilo Parallax sutil) */
-    background-attachment: fixed;
+    /* Mantenemos fondo transparente por defecto para que se transluzca la textura de papel de fondo */
+    background-color: transparent; 
+    
+    /* Dejamos preparada la infraestructura por si en el futuro quieres un fondo fijo por sección (Parallax) */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: transparent; /* Transparente por ahora para ver el fondo estático general */
+    
+    /* Separador minimalista muy sutil para delimitar los bloques sobre la textura */
+    border-bottom: 1px solid rgba(17, 17, 17, 0.06); 
 }
 
 /* Contenedor interno para centrar los textos y elementos */
 .section-content {
     width: 100%;
     text-align: center;
+    z-index: 2; /* Asegura que el contenido quede por encima de cualquier capa */
+}
+
+.section-confirmacion {
+    border-bottom: none; /* El último bloque no lleva línea de separación */
 }
 
 /* ==========================================================================
