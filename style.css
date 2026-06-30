@@ -158,35 +158,30 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
    ========================================================================== */
 .main-container {
     width: 100%;
-    max-width: 480px; /* Centrado fluido simulando pantalla móvil en PC */
+    max-width: 480px; /* Centrado fluido para simular pantalla móvil en PC */
     margin: 0 auto;
     position: relative;
     
-    /* 1. COLOR DE RESPALDO ELEGANTE: 
-       Un tono marfil muy suave (#fcfbfa) que rellena cualquier espacio 
-       y elimina los cortes abruptos de luz.
-    */
-    background-color: #fcfbfa; 
-
-    /* 2. TU TEXTURA ORGANIZADA */
+    /* 1. TU NUEVA TEXTURA CORREGIDA POR IA */
     background-image: url('assets/fondo-general-estatico4.png');
     
-    /* 3. ANCHO TOTAL Y ALTO AUTOMÁTICO:
-       '100%' obliga a la imagen a ocupar todo el ancho del celular eliminando las rayas laterales.
-       'auto' mantiene la proporción real y fina de las arrugas del papel.
+    /* 2. AJUSTE DE ESCALA NATURAL:
+       Regresamos a un valor intermedio (ej. 55%) para que las arrugas del papel 
+       no se vean gigantes ni borrosas. Ajusta este % a tu gusto para alejar o acercar.
     */
-    background-size: 100% auto; 
+    background-size: 55% auto; 
     
-    /* 4. BLOQUEO HORIZONTAL REVOLUCIONARIO:
-       'repeat-y' significa: Repetirse ÚNICAMENTE de arriba hacia abajo (eje Y). 
-       Está estrictamente prohibido repetirse hacia los lados (eje X).
+    /* 3. REPETICIÓN INFINITA VERTICAL PERFECTA:
+       Se repite suavemente hacia abajo (eje Y). Como tu IA alineó los bordes,
+       el salto entre repeticiones ahora será invisible. 
+       Mantenemos bloqueado el eje X (lados) para evitar las franjas.
     */
     background-repeat: repeat-y; 
     
-    /* Centramos el punto de inicio en la parte superior */
+    /* Alineamos al centro del dispositivo */
     background-position: center top; 
     
-    background-attachment: scroll; /* Acompaña el desplazamiento móvil con fluidez */
+    background-attachment: scroll; /* Scroll fluido nativo para dispositivos móviles */
 }
 
 .main-container.hidden {
