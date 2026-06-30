@@ -162,10 +162,10 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     width: 100%;
     max-width: 480px; 
     margin: 0 auto;
-    background-color: var(--primary-bg); /* Fondo blanco por defecto */
+    /* background-color: var(--primary-bg); /* Fondo blanco por defecto */
     /* Si deseas una imagen estática general para toda la invitación, la activarías aquí: */
-    /* background-image: url('assets/images/fondo-general-estatico.jpg'); */
-    /* background-size: cover; background-attachment: scroll; */
+    background-image: url('assets/fondo-general-estatico.jpg');
+    background-size: cover; background-attachment: scroll;
     position: relative;
 }
 
