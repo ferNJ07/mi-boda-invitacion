@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const video = document.getElementById("wedding-video");
     const invitationDetails = document.getElementById("invitation-details");
 
+    // Forzar que el video esté listo en segundo plano para evitar pantallas negras
+    video.load();
+
     /**
      * Paso 1: Clic en el botón "Abrir Invitación"
      */
@@ -17,12 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Hacer visible el contenedor del video e invitación
         mainContent.classList.remove("hidden");
 
-        // Activamos el sonido justo tras la acción del usuario y reproducimos
-        video.muted = false;
-        video.play().catch(error => {
-            console.log("La reproducción con audio fue bloqueada por el navegador:", error);
-            // Intentar reproducir en silencio si falla catastróficamente
-            video.muted = true;
+        // SECUENCIA CRÍTICA PARA PIXEL / CHROMIUM PURE:
+        // 1. Iniciamos la reproducción manteniendo el 'muted' nativo del HTML
+        video.play().then(() => {
+            // 2. Una vez que el dispositivo confirma que el video corre, activamos el audio de forma segura
+            video.muted = false;
+        }).catch(error => {
+            console.log("Error en reproducción inicial, reintentando con desmutado directo:", error);
+            // Callback de respaldo si el dispositivo viene de un estado de ahorro de batería estricto
+            video.muted = false;
             video.play();
         });
 
