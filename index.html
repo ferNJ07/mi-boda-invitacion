@@ -11,10 +11,24 @@
 </head>
 <body>
 
+    <audio id="bg-music" loop preload="auto">
+        <source src="assets/audio/cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <button id="btn-audio-control" class="audio-control-btn hidden" aria-label="Control de música">
+        <svg class="icon-playing" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <svg class="icon-muted hidden" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73l6 6L21 21l-16.73-16.73zM14 7h4V3h-6v5.18l2 2V7z"/>
+        </svg>
+    </button>
+
     <div id="splash-screen" class="splash-container">
         <div class="splash-content">
-            <h1 class="wedding-title"></h1>
-            <p class="wedding-subtitle"></p>
+            <h1 class="wedding-title">Fernando & Valeria</h1>
+            <p class="wedding-subtitle">Estás invitado</p>
             <button id="btn-entrar" class="btn-elegant">Abrir Invitación</button>
         </div>
     </div>
@@ -23,62 +37,53 @@
         
         <section id="video-fullscreen-container" class="video-fullscreen">
             <video id="wedding-video" playsinline muted autoplay preload="auto">
-                <source src="assets/tu_video2.mp4" type="video/mp4">
+                <source src="assets/videos/tu_video.mp4" type="video/mp4">
                 Tu navegador no soporta video.
             </video>
         </section>
 
-        <!-- Contenido Real de la Invitación (Se revela al terminar el video) -->
-    <div id="invitation-details" class="invitation-details hidden-content">
-        
-        <!-- SECCIÓN 1: BIENVENIDA / ENCABEZADO -->
-        <section id-seccion="inicio" class="invitation-section section-inicio">
-            <div class="section-content">
-                <p class="quote">"El amor no se mide en tiempo, sino en instantes como este..."</p>
-                <h2 class="main-wedding-title">Fernando & Valeria</h2>
-                <p class="wedding-date-text">30.12.2026</p>
-            </div>
-        </section>
-    
-        <!-- SECCIÓN 2: CUENTA REGRESIVA / DETALLES -->
-        <section id-seccion="contador" class="invitation-section section-contador">
-            <div class="section-content">
-                <h3>Nuestra Cuenta Regresiva</h3>
-                <!-- Aquí integraremos el contador dinámico en el futuro -->
-                <div class="placeholder-box">Contador (Días : Horas : Min : Seg)</div>
-            </div>
-        </section>
-    
-        <!-- SECCIÓN 3: UBICACIÓN / LOGÍSTICA -->
-        <section id-seccion="ubicacion" class="invitation-section section-ubicacion">
-            <div class="section-content">
-                <h3>Lugar y Hora</h3>
-                <p>Ceremonia y Recepción en Monterrey, N.L.</p>
-                <button class="btn-accent-placeholder">Ver Mapa</button>
-            </div>
-        </section>
-    
-        <!-- SECCIÓN 4: MESA DE REGALOS -->
-        <section id-seccion="regalos" class="invitation-section section-regalos">
-            <div class="section-content">
-                <h3>Mesa de Regalos</h3>
-                <p>Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros...</p>
-                <button class="btn-accent-placeholder">Ver Datos Bancarios</button>
-            </div>
-        </section>
-    
-        <!-- SECCIÓN 5: CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
-        <section id-seccion="confirmacion" class="invitation-section section-confirmacion">
-            <div class="section-content">
-                <h3>Confirmar Asistencia</h3>
-                <p>Por favor, confirma tu asistencia antes del evento.</p>
-                <!-- Aquí se ubicará el formulario interactivo hacia WhatsApp o Base de Datos -->
-                <button class="btn-accent-placeholder">Confirmar por WhatsApp</button>
-            </div>
-        </section>
-    
-    </div>
+        <div id="invitation-details" class="invitation-details hidden-content">
+            
+            <section id-seccion="inicio" class="invitation-section section-inicio">
+                <div class="section-content">
+                    <p class="quote">"El amor no se mide en tiempo, sino en instantes como este..."</p>
+                    <h2 class="main-wedding-title">Fernando & Valeria</h2>
+                    <p class="wedding-date-text">30.12.2026</p>
+                </div>
+            </section>
 
+            <section id-seccion="contador" class="invitation-section section-contador">
+                <div class="section-content">
+                    <h3>Nuestra Cuenta Regresiva</h3>
+                    <div class="placeholder-box">Contador (Días : Horas : Min : Seg)</div>
+                </div>
+            </section>
+
+            <section id-seccion="ubicacion" class="invitation-section section-ubicacion">
+                <div class="section-content">
+                    <h3>Lugar y Hora</h3>
+                    <p>Ceremonia y Recepción en Monterrey, N.L.</p>
+                    <button class="btn-accent-placeholder">Ver Mapa</button>
+                </div>
+            </section>
+
+            <section id-seccion="regalos" class="invitation-section section-regalos">
+                <div class="section-content">
+                    <h3>Mesa de Regalos</h3>
+                    <p>Tu presencia es nuestro mejor regalo...</p>
+                    <button class="btn-accent-placeholder">Ver Datos Bancarios</button>
+                </div>
+            </section>
+
+            <section id-seccion="confirmacion" class="invitation-section section-confirmacion">
+                <div class="section-content">
+                    <h3>Confirmar Asistencia</h3>
+                    <p>Por favor, confirma tu asistencia antes del evento.</p>
+                    <button class="btn-accent-placeholder">Confirmar por WhatsApp</button>
+                </div>
+            </section>
+
+        </div>
     </main>
 
     <script src="script.js"></script>
