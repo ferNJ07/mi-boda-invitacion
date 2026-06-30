@@ -163,7 +163,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     position: relative;
     
     /* CONFIGURACIÓN DEL FONDO CON "ZOOM ALEJADO" */
-    background-image: url('assets/images/fondo-general-estatico4.png');
+    background-image: url('assets/fondo-general-estatico4.png');
     
     /* 
        Al usar un porcentaje (ej. 40% o 50%), le indicamos al navegador el ancho que debe ocupar la imagen.
