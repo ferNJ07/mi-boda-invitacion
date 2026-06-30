@@ -163,7 +163,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     position: relative;
     
     /* Configuración de Imagen de Fondo General Adaptable */
-    background-image: url('assets/fondo-general-estatico3.png');
+    background-image: url('assets/fondo-general-estatico4.png');
     background-size: cover;          /* Obliga a la imagen a cubrir toda la pantalla sin deformarse */
     background-position: center;     /* Centra la textura perfectamente */
     background-repeat: no-repeat;
