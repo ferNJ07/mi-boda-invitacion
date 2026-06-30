@@ -1,20 +1,20 @@
 /* ==========================================================================
-   1. VARIABLES Y CONFIGURACIÓN DE COLORES (Adaptable a futuros acentos)
+   1. VARIABLES Y COLORES (Black & White + 2 Espacios para Acentos Futuros)
    ========================================================================== */
 :root {
     /* Colores Base (Black & White) */
-    --primary-bg: #ffffff;       /* Fondo principal claro */
-    --secondary-bg: #0a0a0a;     /* Fondo oscuro para splash o secciones */
+    --primary-bg: #ffffff;       /* Fondo principal claro de la invitación */
+    --secondary-bg: #0a0a0a;     /* Fondo oscuro elegante para el Splash y Video */
     --text-main: #111111;        /* Texto principal */
     --text-muted: #666666;       /* Texto secundario o citas */
-    --border-color: #e0e0e0;     /* Líneas sutiles de separación */
+    --border-color: #e0e0e0;     /* Líneas de separación sutiles */
 
     /* Espacio reservado para los 2 colores de acento futuros */
-    /* Actualmente configurados en negro/gris para mantener el Black & White */
-    --accent-color-1: #111111;   /* Ej. Futuro Oro, Champaña, etc. */
-    --accent-color-2: #555555;   /* Ej. Futuro Verde Oliva, Vino, etc. */
+    /* Actualmente en negro/gris para mantener la estética Black & White */
+    --accent-color-1: #111111;   /* Ej. Futuro Oro, Champaña, Rose Gold */
+    --accent-color-2: #555555;   /* Ej. Futuro Verde Eucalipto, Azul Profundo */
     
-    /* Tipografías */
+    /* Tipografías Elegantes */
     --font-titles: 'Cormorant Garamond', Georgia, serif;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -35,8 +35,7 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Evita el scroll horizontal molesto en móviles */
-    overflow-x: hidden; 
+    overflow-x: hidden; /* Evita scrolls horizontales accidentales en smartphones */
 }
 
 /* ==========================================================================
@@ -48,19 +47,18 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--secondary-bg); /* Fondo Negro elegante */
+    background-color: var(--secondary-bg);
     color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 9999; /* Por encima de todo al iniciar */
     text-align: center;
     padding: 20px;
-    /* Transición suave para cuando se oculte */
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-/* Clase que aplicará JS para desvanecer la pantalla */
+/* Clase de JS para desvanecer el Splash */
 .splash-container.fade-out {
     opacity: 0;
     visibility: hidden;
@@ -81,7 +79,6 @@ body {
 }
 
 .wedding-subtitle {
-    font-family: var(--font-body);
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -89,66 +86,9 @@ body {
     margin-bottom: 40px;
 }
 
-/* Botón Elegante con uso de la variable de acento */
+/* Botón Minimalista */
 .btn-elegant {
     background: transparent;
     border: 1px solid #ffffff;
     color: #ffffff;
-    padding: 14px 36px;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Al hacer hover o clic (Efecto sutil) */
-.btn-elegant:hover, .btn-elegant:active {
-    background-color: #ffffff;
-    color: var(--secondary-bg);
-}
-
-/* ==========================================================================
-   4. CONTENIDO PRINCIPAL E INTEGRACIÓN DE VIDEO
-   ========================================================================== */
-.main-container {
-    opacity: 1;
-    transition: opacity 1s ease;
-    max-width: 480px; /* Ancho máximo estándar de un smartphone para simular app */
-    margin: 0 auto;  /* Centra la invitación en pantallas más grandes o tablets */
-    background: var(--primary-bg);
-}
-
-.main-container.hidden {
-    display: none;
-    opacity: 0;
-}
-
-/* Contenedor del video optimizado para vertical (Mobile Aspect Ratio) */
-.video-section {
-    width: 100%;
-    position: relative;
-    background-color: #000;
-    line-height: 0; /* Remueve espacios vacíos debajo del video */
-}
-
-video {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-/* Sección de detalles de ejemplo */
-.invitation-details {
-    padding: 60px 30px;
-    text-align: center;
-}
-
-.invitation-details h2 {
-    font-family: var(--font-titles);
-    font-size: 2.2rem;
-    color: var(--accent-color-1); /* Preparado para el color de acento futuro */
-    margin-bottom: 20px;
-    font-weight: 400;
-}
+    padding:
