@@ -10,7 +10,6 @@
     --border-color: #e0e0e0;     /* Líneas de separación sutiles */
 
     /* Espacio reservado para los 2 colores de acento futuros */
-    /* Actualmente en negro/gris para mantener la estética Black & White */
     --accent-color-1: #111111;   /* Ej. Futuro Oro, Champaña, Rose Gold */
     --accent-color-2: #555555;   /* Ej. Futuro Verde Eucalipto, Azul Profundo */
     
@@ -35,7 +34,15 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Evita scrolls horizontales accidentales en smartphones */
+    overflow-x: hidden; /* Evita scrolls horizontales accidentales */
+}
+
+/* Regla crítica: Mientras el video esté activo en pantalla, el fondo se congela */
+body:has(#video-fullscreen-container:not(.fade-out)) {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
 
 /* ==========================================================================
@@ -47,18 +54,19 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh; /* Altura dinámica para navegadores móviles */
     background-color: var(--secondary-bg);
     color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Por encima de todo al iniciar */
+    z-index: 9999;
     text-align: center;
     padding: 20px;
+    overflow: hidden;
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-/* Clase de JS para desvanecer el Splash */
 .splash-container.fade-out {
     opacity: 0;
     visibility: hidden;
@@ -86,9 +94,98 @@ body {
     margin-bottom: 40px;
 }
 
-/* Botón Minimalista */
 .btn-elegant {
     background: transparent;
     border: 1px solid #ffffff;
     color: #ffffff;
-    padding:
+    padding: 14px 36px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-elegant:hover, .btn-elegant:active {
+    background-color: #ffffff;
+    color: var(--secondary-bg);
+}
+
+/* ==========================================================================
+   4. CONTENEDOR DEL VIDEO A PANTALLA COMPLETA (CORREGIDO SIN SCROLL)
+   ========================================================================== */
+.video-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; /* Evita que las barras de Safari/Chrome empujen el video hacia abajo */
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
+    overflow: hidden; /* Corta cualquier desborde */
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.video-fullscreen video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajuste cinematográfico que cubre la pantalla sin deformar */
+    object-position: center;
+    pointer-events: none; /* Evita pausas accidentales al tocar la pantalla */
+}
+
+.video-fullscreen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   5. CONTENIDO DE LA INVITACIÓN REAL
+   ========================================================================== */
+.main-container {
+    width: 100%;
+    max-width: 480px; /* Centrado fluido simulando pantalla móvil en PC */
+    margin: 0 auto;
+    background: var(--primary-bg);
+    position: relative;
+}
+
+.main-container.hidden {
+    display: none;
+}
+
+.invitation-details {
+    padding: 60px 30px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.hidden-content {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-in-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.invitation-details h2 {
+    font-family: var(--font-titles);
+    font-size: 2.2rem;
+    color: var(--accent-color-1);
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
