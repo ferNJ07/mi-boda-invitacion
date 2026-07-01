@@ -51,9 +51,7 @@
                     <div class="reveal-delayed-slow">
                         <p class="quote">"El amor no se mide en tiempo, sino en instantes como este..."</p>
                     </div>
-                    
                     <h2 class="main-wedding-title signature-writing">Fernando & Valeria</h2>
-                    
                     <div class="reveal-delayed-fast">
                         <p class="wedding-date-text">21.03.2027</p>
                     </div>
@@ -122,8 +120,17 @@
             <section id-seccion="regalos" class="invitation-section section-regalos">
                 <div class="section-content">
                     <h3 class="section-subtitle">Mesa de Regalos</h3>
-                    <p class="gifts-text">Tu presencia es nuestro mejor regalo, pero si deseas hacernos un detalle, ponemos a tu disposición nuestras opciones:</p>
-                    <button class="btn-outline-elegant">Ver Datos Bancarios</button>
+                    <p class="gifts-text">Tu presencia es nuestro mejor regalo, pero si deseas hacernos un detalle, ponemos a tu disposición nuestra lista de bodas:</p>
+                    
+                    <button id="btn-trigger-wishlist" class="btn-outline-elegant" onclick="document.getElementById('wishlist-card').classList.toggle('active')">Ver Lista de Regalos</button>
+                    
+                    <div id="wishlist-card" class="wishlist-sliding-card">
+                        <div class="wishlist-card-content">
+                            <h4>Amazon Wishlist</h4>
+                            <p>Hemos seleccionado con mucha ilusión algunas opciones para nuestro nuevo hogar a través de Amazon.</p>
+                            <a href="https://www.amazon.com.mx/hz/wishlist/ls/2II2TDCJ81YKA?ref_=wl_share" target="_blank" class="btn-outline-elegant text-important">Ir a la Mesa de Regalos</a>
+                        </div>
+                    </div>
                 </div>
             </section>
 
