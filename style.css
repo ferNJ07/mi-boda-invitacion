@@ -478,7 +478,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 /* Estilos de escalado y proporción para tu PNG */
 .wishlist-merchant-logo {
     display: block;
-    height: 48px; /* Altura de proporción áurea para logos corporativos en tarjetones */
+    height: 96px; /* Altura de proporción áurea para logos corporativos en tarjetones */
     width: auto;   /* Mantiene el ancho proporcional original automáticamente */
     margin: 0 auto 18px auto; /* Centrado horizontal y margen inferior */
     object-fit: contain;
