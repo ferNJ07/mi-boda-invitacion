@@ -1,84 +1,53 @@
 /* ==========================================================================
-   0. FUENTES LOCALES Y VARIABLES DE DISEÑO (SISTEMA DE DISEÑO 2026/2027)
+   0. IMPORTACIÓN DE FUENTES EXTERNAS Y LOCALES
    ========================================================================== */
+/* Google Fonts API: Cargando solo los pesos estrictamente necesarios para optimizar rendimiento */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap');
+
+/* Fuente Local Exclusiva para Nombres y Frases Hero */
 @font-face {
     font-family: 'CherolinaLocal';
     src: url('assets/fonts/Cherolina.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'CormorantGaramondLocal';
-    src: url('assets/fonts/CormorantGaramond-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'CormorantGaramondLocal';
-    src: url('assets/fonts/CormorantGaramond-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'MontserratLocal';
-    src: url('assets/fonts/Montserrat-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'MontserratLocal';
-    src: url('assets/fonts/Montserrat-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'MontserratLocal';
-    src: url('assets/fonts/Montserrat-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-:root {
-    /* Paleta Cromática Minimalista Orgánica */
-    --bg-ivory: #FDFBF7;          /* Blanco hueso / Marfil base */
-    --bg-beige: #F5F1E9;          /* Beige sutil de contraste */
-    --text-primary: #1A1A1A;      /* Grafito profundo para máxima legibilidad */
-    --text-muted: #65625C;         /* Tono piedra para información secundaria */
-    --accent-floral: #8A9A86;     /* Verde eucalipto desaturado para detalles */
-
-    /* Sistema de Fuentes Nativas */
-    --font-script: 'CherolinaLocal', cursive;
-    --font-serif: 'CormorantGaramondLocal', Georgia, serif;
-    --font-sans: 'MontserratLocal', system-ui, sans-serif;
-
-    /* ESCALA TIPOGRÁFICA FLUIDA CON CLAMP() */
-    /* clamp(mínimo, valor_dinámico, máximo) */
-    --font-size-hero: clamp(2.8rem, 2.2rem + 3vw, 4.8rem);
-    --font-size-h2: clamp(1.8rem, 1.5rem + 1.5vw, 2.6rem);
-    --font-size-h3: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
-    --font-size-body: clamp(0.9rem, 0.85rem + 0.25vw, 1.05rem);
-    --font-size-meta: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
-
-    /* SISTEMA DE ESPACIADO DE SECCIONES (WHITE SPACE RESPONSIVE) */
-    --section-padding-y: clamp(5rem, 4rem + 6vh, 9rem);
-    --element-gap-sm: 0.75rem;
-    --element-gap-md: 1.5rem;
-    --element-gap-lg: 2.5rem;
+    font-display: swap; /* Previene el efecto de texto invisible (FOIT) */
 }
 
 /* ==========================================================================
-   1. ESTILOS DE RESET Y ACCESIBILIDAD BASE
+   1. VARIABLES CSS (TOKENS DE DISEÑO MINI-SISTEMA)
+   ========================================================================== */
+:root {
+    /* Paleta de Colores Aristocrática / Minimalista */
+    --bg-ivory: #FFFDF9;         /* Blanco hueso / Marfil base */
+    --bg-beige: #F7F4EE;         /* Beige sutil para contraste de fondos */
+    --text-charcoal: #1A1A1A;    /* Negro suavizado de alta legibilidad */
+    --text-muted: #6E6A62;       /* Tono lino/arena para detalles secundarios */
+    --accent-gold: #C5A880;      /* Oro sutil para destaques atemporales */
+
+    /* Fuentes del Sistema */
+    --font-script: 'CherolinaLocal', cursive;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+
+    /* ESCALA TIPOGRÁFICA FLUIDA CON clamp(min, val_actual, max) */
+    /* Diseñada matemáticamente para pantallas de 320px hasta 1440px */
+    --font-size-hero: clamp(3.0rem, 2.2rem + 4.0vw, 5.5rem);      /* Cherolina */
+    --font-size-h2: clamp(1.8rem, 1.4rem + 2.0vw, 3.0rem);        /* Cormorant Garamond */
+    --font-size-h3: clamp(1.2rem, 1.0rem + 1.0vw, 1.8rem);        /* Cormorant Garamond */
+    --font-size-body: clamp(0.9rem, 0.85rem + 0.25vw, 1.05rem);   /* Montserrat */
+    --font-size-meta: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);    /* Montserrat */
+
+    /* Interlineados Proporcionales (Line-Height) */
+    --lh-script: 1.2;
+    --lh-serif: 1.3;
+    --lh-sans: 1.7;
+
+    /* ESPACIADO RECOMENDADO ENTRE SECCIONES (Lujo Silencioso) */
+    --section-padding: clamp(4rem, 8vh, 12rem) clamp(1.5rem, 5vw, 4rem);
+}
+
+/* ==========================================================================
+   2. ESTILOS BASE Y ACCESIBILIDAD
    ========================================================================== */
 * {
     box-sizing: border-box;
@@ -87,130 +56,126 @@
 }
 
 body {
-    background-color: var(--bg-ivory);
-    color: var(--text-primary);
     font-family: var(--font-sans);
-    font-weight: 400;
-    line-height: 1.7;
+    font-size: var(--font-size-body);
+    line-height: var(--lh-sans);
+    color: var(--text-charcoal);
+    background-color: var(--bg-ivory);
+    background-image: url('assets/texture-paper.webp'); /* Sutil textura de fondo continuo */
+    background-repeat: repeat;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Contenedor centralizado para emular la experiencia física */
+/* Contenedor responsivo centrado tipo Tarjetón Editorial */
 .invitation-frame {
     width: 100%;
-    max-width: 500px; /* Ancho óptimo de lectura tipo tarjetón en mobile y desktop */
+    max-width: 500px; /* Ancho áureo para lectura móvil y simulación en escritorio */
     margin: 0 auto;
-    background-color: var(--bg-ivory);
     position: relative;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.02); /* Sombra extremadamente sutil */
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.02); /* Sombra extremadamente suave */
 }
 
 .invitation-section {
-    padding: var(--section-padding-y) 2rem;
+    padding: var(--section-padding);
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    min-height: 80dvh; /* Permite que cada sección respire de manera imponente */
+}
+
+/* Separador floral o lineal sutil entre bloques */
+.subtle-divider {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-h3);
+    color: var(--accent-gold);
+    margin: 2.5rem 0;
+    opacity: 0.6;
+    letter-spacing: 4px;
 }
 
 /* ==========================================================================
-   2. CLASES TIPOGRÁFICAS DE JERARQUÍA PREMIUM
+   3. CLASES DE JERARQUÍA TIPOGRÁFICA
    ========================================================================== */
-
-/* Cherolina: Exclusiva para elementos artísticos y nombres */
-.typo-script-hero {
+.t-hero {
     font-family: var(--font-script);
     font-size: var(--font-size-hero);
+    line-height: var(--lh-script);
     font-weight: normal;
-    line-height: 1.1;
-    color: var(--text-primary);
+    color: var(--text-charcoal);
+    text-transform: none;
 }
 
-.typo-script-quote {
-    font-family: var(--font-script);
-    font-size: clamp(1.8rem, 1.6rem + 1vw, 2.4rem);
-    font-weight: normal;
-    line-height: 1.3;
-    color: var(--text-muted);
-}
-
-/* Cormorant Garamond: Encabezados estructurales solemnes */
-.typo-serif-title {
+.t-section-title {
     font-family: var(--font-serif);
     font-size: var(--font-size-h2);
+    line-height: var(--lh-serif);
     font-weight: 500;
-    letter-spacing: 1px;
-    line-height: 1.3;
-    color: var(--text-primary);
+    letter-spacing: 2px;
+    color: var(--text-charcoal);
 }
 
-.typo-serif-subtitle {
+.t-section-subtitle {
     font-family: var(--font-serif);
     font-size: var(--font-size-h3);
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: var(--text-primary);
+    line-height: var(--lh-serif);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
 }
 
-/* Montserrat: Información de alta precisión y legibilidad */
-.typo-sans-body {
+.t-body-editorial {
     font-family: var(--font-sans);
     font-size: var(--font-size-body);
     font-weight: 400;
     color: var(--text-muted);
+    max-width: 32ch; /* Mantiene la línea corta emulando impresión y optimizando lectura */
+    margin: 0 auto;
 }
 
-.typo-sans-label {
+.t-logistics-label {
     font-family: var(--font-sans);
     font-size: var(--font-size-meta);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: var(--text-primary);
+    color: var(--text-charcoal);
 }
 
-.typo-sans-time {
-    font-family: var(--font-sans);
-    font-size: var(--font-size-body);
+.t-logistics-time {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 2rem);
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text-primary);
+    color: var(--accent-gold);
+    margin: 0.4rem 0;
 }
 
 /* ==========================================================================
-   3. COMPONENTES DEL COMPLEMENTO DE DISEÑO
+   4. ESTILOS DE COMPONENTES INTERACTIVOS (BOTÓN RSVP)
    ========================================================================== */
-
-/* Botón Premium Outline */
-.btn-rsvp {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 1px solid rgba(26, 26, 26, 0.25);
-    padding: 1rem 2.5rem;
+.btn-rsvp-premium {
     font-family: var(--font-sans);
     font-size: var(--font-size-meta);
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    color: var(--text-charcoal);
+    background-color: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.2);
+    padding: 1rem 2.5rem;
+    margin-top: 2rem;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    margin-top: var(--element-gap-md);
-    text-decoration: none;
-    display: inline-block;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.btn-rsvp:hover, .btn-rsvp:active {
-    background-color: var(--text-primary);
+.btn-rsvp-premium:hover, 
+.btn-rsvp-premium:active {
+    border-color: var(--text-charcoal);
+    background-color: var(--text-charcoal);
     color: var(--bg-ivory);
-    border-color: var(--text-primary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
     transform: translateY(-1px);
-}
-
-/* Bloque divisor floral sutil */
-.floral-divider {
-    color: var(--accent-floral);
-    font-size: 1.2rem;
-    margin-bottom: var(--element-gap-md);
-    opacity: 0.8;
 }
