@@ -1,249 +1,8 @@
 /* ==========================================================================
-   0. DECLARACIÓN DE FUENTES (MÉTODO GOOGLE FONTS + RESERVA LOCAL FUTURA)
-   ========================================================================== */
-@font-face {
-    font-family: 'CherolinaLocal';
-    src: url('assets/fonts/Cherolina.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* DESCOMENTA ESTAS LÍNEAS EN EL FUTURO SI REEMPLAZAS GOOGLE FONTS POR RECURSOS PROPIOS LOCALES
-@font-face {
-    font-family: 'CormorantGaramondLocal';
-    src: url('assets/fonts/cormorant-garamond-regular.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'MontserratLocal';
-    src: url('assets/fonts/montserrat-light.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-*/
-
-/* ==========================================================================
-   1. VARIABLES Y DISEÑO EDITORIAL
-   ========================================================================== */
-:root {
-    --primary-bg: #ffffff;       
-    --secondary-bg: #0d0d0d;     
-    --text-main: #1a1a1a;        
-    --text-muted: #707070;       
-    --subtle-line: rgba(26, 26, 26, 0.05);
-
-    --font-script: 'CherolinaLocal', cursive; 
-    --font-titles: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'Montserrat', system-ui, -apple-system, sans-serif;
-}
-
-/* ==========================================================================
-   2. RESETS Y OPTIMIZACIÓN MÓVIL
-   ========================================================================== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: var(--font-body);
-    background-color: var(--primary-bg);
-    color: var(--text-main);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
-
-body:has(#video-fullscreen-container:not(.fade-out)) {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
-
-/* ==========================================================================
-   3. BOTÓN FLOTANTE DE CONTROL DE AUDIO
-   ========================================================================== */
-.audio-control-btn {
-    position: fixed;
-    bottom: 28px;
-    right: 24px;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: var(--text-main);
-    border: 1px solid rgba(26, 26, 26, 0.08);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 6000;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(6px);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.audio-control-btn.hidden { display: none !important; }
-.audio-control-btn.muted-active { background-color: var(--text-main); color: #ffffff; }
-.audio-control-btn:active { transform: scale(0.92); }
-.audio-control-btn .hidden { display: none !important; }
-
-/* ==========================================================================
-   4. PANTALLA DE BIENVENIDA (SPLASH SCREEN)
-   ========================================================================== */
-.splash-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('assets/fondo-splash.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    text-align: center;
-    padding: 24px;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.splash-container.fade-out {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.wedding-title-splash {
-    font-family: var(--font-script);
-    font-size: 3.5rem;
-    font-weight: normal;
-    color: #ffffff;
-    margin-bottom: 5px;
-    line-height: 1.2;
-}
-
-.wedding-subtitle {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 48px;
-}
-
-.btn-elegant {
-    background: transparent;
-    border: 1px solid #ffffff;
-    color: #ffffff;
-    padding: 14px 40px;
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-elegant:hover, .btn-elegant:active {
-    background-color: #ffffff;
-    color: var(--secondary-bg);
-}
-
-/* ==========================================================================
-   5. VIDEO CONTENEDOR (INTRODUCCIÓN CINEMÁTICA)
-   ========================================================================== */
-.video-fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100dvh;
-    background-color: #000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 5000;
-    overflow: hidden;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.video-fullscreen video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-}
-
-.video-fullscreen.fade-out {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* ==========================================================================
-   6. CONTENEDOR PRINCIPAL (TEXTURA DE PAPEL CONTINUO)
-   ========================================================================== */
-.main-container {
-    width: 100%;
-    max-width: 480px; 
-    margin: 0 auto;
-    position: relative;
-    background-image: url('assets/fondo-general-estatico2.webp');
-    background-size: 100% auto; 
-    background-repeat: repeat-y; 
-    background-position: center top; 
-    background-attachment: scroll;
-}
-
-.main-container.hidden { display: none; }
-
-.invitation-details {
-    width: 100%;
-    transition: opacity 1.2s ease, transform 1.2s ease;
-}
-
-.invitation-section {
-    width: 100%;
-    min-height: 100dvh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 28px;
-    background-color: transparent; 
-}
-
-.section-content {
-    width: 100%;
-    text-align: center;
-    z-index: 2;
-}
-
-.section-subtitle {
-    font-family: var(--font-titles);
-    font-size: 1.65rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-bottom: 32px;
-    color: var(--text-main);
-}
-
-/* ==========================================================================
-   7. INTERFAZ INTERNA Y CORE DE ANIMACIÓN (EFECTO ESCRITURA DE NOMBRE)
+   7. INTERFAZ INTERNA Y CORE DE ANIMACIÓN (CORREGIDO)
    ========================================================================== */
 
-/* Lógica de revelado por máscara para emular trazo manuscrito */
+/* Contenedor de los nombres: preparamos el texto para ser revelado */
 .main-wedding-title.signature-writing {
     font-family: var(--font-script); 
     font-size: 3.6rem;
@@ -254,223 +13,61 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     display: inline-block;
     position: relative;
     
-    /* Configuración de Máscara de Degradado */
-    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 0%);
-    mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 0%);
-    -webkit-mask-size: 300% 100%;
-    mask-size: 300% 100%;
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
+    /* Estado inicial: oculto mediante opacidad base para evitar parpadeos */
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-/* Disparador automático de la máscara cuando la sección se vuelve activa */
+/* Cuando el script activa la invitación, hacemos visible el bloque y disparamos el trazo */
 .fade-in-content .signature-writing {
-    animation: writeSignature 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 1;
+    /* Usamos un clip-path lineal de izquierda a derecha, que es 100% compatible y ultra fluido en móviles */
+    animation: writeSignatureMobile 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: 0.5s; /* Pequeño respiro de 500ms tras terminar el video */
 }
 
 /* Orquestación cronológica de los elementos secundarios (Frase y Fecha) */
-.reveal-delayed-slow, .reveal-delayed-fast {
+.reveal-delayed-slow {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
 }
 
+.reveal-delayed-fast {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+/* Revelado de la frase superior: aparece suavemente mientras se escribe el nombre */
 .fade-in-content .reveal-delayed-slow {
-    animation: revealSecondary 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 2.2s; /* Aparece un instante antes de terminar el trazo */
+    animation: revealSecondaryTexts 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 1.2s; 
 }
 
+/* Revelado de la fecha inferior: aparece justo cuando el nombre se termina de escribir */
 .fade-in-content .reveal-delayed-fast {
-    animation: revealSecondary 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 3.2s; /* Aparece justo al finalizar la escritura de los nombres */
+    animation: revealSecondaryTexts 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 2.8s; 
 }
 
-/* FOTOGRAMAS CLAVE (KEYFRAMES) DE ANIMACIÓN NATIVA CSS */
-@keyframes writeSignature {
+/* FOTOGRAMAS CLAVE (KEYFRAMES) OPTIMIZADOS PARA RENDIMIENTO MÓVIL */
+@keyframes writeSignatureMobile {
     0% {
-        -webkit-mask-position: 100% 0;
-        mask-position: 100% 0;
+        /* El texto se encuentra recortado completamente a la izquierda */
+        clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
     }
     100% {
-        -webkit-mask-position: 0% 0;
-        mask-position: 0% 0;
+        /* Revelamos el 100% del contenedor de izquierda a derecha simulando la escritura */
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 }
 
-@keyframes revealSecondary {
+@keyframes revealSecondaryTexts {
     0% {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(8px);
     }
     100% {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* ==========================================================================
-   8. COMPONENTES DE INFORMACIÓN LOGÍSTICA
-   ========================================================================== */
-.quote {
-    font-family: var(--font-titles);
-    font-size: 1.25rem;
-    font-weight: 500;
-    font-style: italic;
-    color: var(--text-muted);
-    padding: 0 10px;
-}
-
-.wedding-date-text {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-top: 16px;
-}
-
-/* CUENTA REGRESIVA TRABAJADA EN RETÍCULA */
-.countdown-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    max-width: 360px;
-    margin: 0 auto;
-}
-
-.countdown-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 70px;
-}
-
-.countdown-value {
-    font-family: var(--font-titles);
-    font-size: 3rem;
-    font-weight: 600;
-    color: var(--text-main);
-    line-height: 1;
-}
-
-.countdown-label {
-    font-family: var(--font-body);
-    font-size: 0.65rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-    margin-top: 8px;
-}
-
-/* DISEÑO LOGÍSTICO ASIMÉTRICO */
-.logistics-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    margin-bottom: 40px;
-}
-
-.logistics-card h4 {
-    font-family: var(--font-titles);
-    font-size: 1.35rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-}
-
-.logistics-time {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-bottom: 4px;
-}
-
-.logistics-detail {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-muted);
-}
-
-.logistics-divider-line {
-    width: 40px;
-    height: 1px;
-    background-color: var(--subtle-line);
-    margin: 0 auto;
-}
-
-/* SECCIÓN PALETAS DRESS CODE */
-.dress-code-style {
-    font-family: var(--font-titles);
-    font-size: 1.45rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-}
-
-.dress-code-note {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    max-width: 320px;
-    margin: 0 auto 28px auto;
-}
-
-.color-palette-container {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-}
-
-.color-circle {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
-}
-
-/* REGALOS Y RSVP */
-.gifts-text, .rsvp-text {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    max-width: 340px;
-    margin: 0 auto 12px auto;
-}
-
-.rsvp-deadline {
-    font-family: var(--font-titles);
-    font-size: 1.2rem;
-    font-weight: 500;
-    font-style: italic;
-    color: var(--text-main);
-    margin-bottom: 16px;
-}
-
-/* BOTÓN PREMIUM OUTLINE STYLE */
-.btn-outline-elegant {
-    background-color: transparent;
-    color: var(--text-main);
-    border: 1px solid rgba(26, 26, 26, 0.2);
-    padding: 13px 32px;
-    margin-top: 16px;
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-elegant:hover, .btn-outline-elegant:active {
-    border-color: var(--text-main);
-    background-color: var(--text-main);
-    color: #ffffff;
 }
