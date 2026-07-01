@@ -1,71 +1,49 @@
-
 /* ==========================================================================
-   BOTÓN FLOTANTE DE CONTROL DE AUDIO (.MP3)
+   0. DECLARACIÓN DE FUENTES LOCALES (ALTA EFICIENCIA WOFF2)
    ========================================================================== */
-.audio-control-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.85);
-    color: var(--text-main);
-    border: 1px solid rgba(17, 17, 17, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 6000; /* Por encima de las secciones pero no interfiere con pantallas de carga */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(4px); /* Efecto esmerilado translúcido moderno */
-    transition: all 0.3s ease;
+@font-face {
+    font-family: 'NoviosElegantScript';
+    src: url('assets/fonts/novios-script.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-/* Cambios visuales rápidos cuando está oculto o silenciado */
-.audio-control-btn.hidden {
-    display: none !important;
+@font-face {
+    font-family: 'CormorantGaramondLocal';
+    src: url('assets/fonts/cormorant-garamond-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
-.audio-control-btn.muted-active {
-    background-color: var(--text-main);
-    color: #ffffff;
+@font-face {
+    font-family: 'InterLocal';
+    src: url('assets/fonts/inter-light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
 }
 
-.audio-control-btn svg {
-    transition: transform 0.2s ease;
-}
-
-.audio-control-btn:active {
-    transform: scale(0.92);
-}
-
-/* Ocultar iconos de forma dinámica */
-.audio-control-btn .hidden {
-    display: none !important;
-}
 /* ==========================================================================
-   1. VARIABLES Y COLORES (Black & White + 2 Espacios para Acentos Futuros)
+   1. VARIABLES Y DISEÑO EDITORIAL
    ========================================================================== */
 :root {
-    /* Colores Base (Black & White) */
-    --primary-bg: #ffffff;       /* Fondo principal claro de la invitación */
-    --secondary-bg: #0a0a0a;     /* Fondo oscuro elegante para el Splash y Video */
-    --text-main: #111111;        /* Texto principal */
-    --text-muted: #666666;       /* Texto secundario o citas */
-    --border-color: #e0e0e0;     /* Líneas de separación sutiles */
+    /* Tonos Lujo Silencioso (Minimalismo Orgánico) */
+    --primary-bg: #ffffff;       
+    --secondary-bg: #0d0d0d;     
+    --text-main: #1a1a1a;        
+    --text-muted: #707070;       
+    --subtle-line: rgba(26, 26, 26, 0.05);
 
-    /* Espacio reservado para los 2 colores de acento futuros */
-    --accent-color-1: #111111;   /* Ej. Futuro Oro, Champaña, Rose Gold */
-    --accent-color-2: #555555;   /* Ej. Futuro Verde Eucalipto, Azul Profundo */
-    
-    /* Tipografías Elegantes */
-    --font-titles: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    /* Mapeo de Fuentes Locales */
+    --font-script: 'NoviosElegantScript', cursive;
+    --font-titles: 'CormorantGaramondLocal', Georgia, serif;
+    --font-body: 'InterLocal', system-ui, -apple-system, sans-serif;
 }
 
 /* ==========================================================================
-   2. RESETS Y OPTIMIZACIÓN MÓVIL (iOS & Android)
+   2. RESETS INTERNOS Y OPTIMIZACIÓN MÓVIL
    ========================================================================== */
 * {
     box-sizing: border-box;
@@ -77,13 +55,11 @@ body {
     font-family: var(--font-body);
     background-color: var(--primary-bg);
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Evita scrolls horizontales accidentales */
+    overflow-x: hidden;
 }
 
-/* Regla crítica: Mientras el video esté activo en pantalla, el fondo se congela */
 body:has(#video-fullscreen-container:not(.fade-out)) {
     overflow: hidden;
     position: fixed;
@@ -92,32 +68,53 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   3. PANTALLA DE BIENVENIDA (SPLASH SCREEN CON IMAGEN DE FONDO)
+   3. BOTÓN FLOTANTE DE CONTROL DE AUDIO (.MP3)
+   ========================================================================== */
+.audio-control-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text-main);
+    border: 1px solid rgba(26, 26, 26, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 6000;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(6px);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.audio-control-btn.hidden { display: none !important; }
+.audio-control-btn.muted-active { background-color: var(--text-main); color: #ffffff; }
+.audio-control-btn:active { transform: scale(0.92); }
+.audio-control-btn .hidden { display: none !important; }
+
+/* ==========================================================================
+   4. PANTALLA DE BIENVENIDA (SPLASH SCREEN)
    ========================================================================== */
 .splash-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
-    height: 100dvh; /* Altura dinámica para navegadores móviles */
-    
-    /* Configuración de la Imagen de Fondo con Capa de Contraste */
-    background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), /* Filtro oscuro para legibilidad del texto */
-        url('assets/fondo-splash.jpg'); /* Asegúrate de subir tu foto con este nombre y extensión */
+    height: 100dvh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('assets/fondo-splash.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
     color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     text-align: center;
-    padding: 20px;
-    overflow: hidden;
+    padding: 24px;
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
@@ -127,34 +124,29 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     pointer-events: none;
 }
 
-.splash-content {
-    max-width: 400px;
-    width: 100%;
-}
-
 .wedding-title {
     font-family: var(--font-titles);
-    font-size: 2.5rem;
-    font-weight: 300;
+    font-size: 2.6rem;
+    font-weight: 400;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .wedding-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    color: #aaaaaa;
-    margin-bottom: 40px;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 48px;
 }
 
 .btn-elegant {
     background: transparent;
     border: 1px solid #ffffff;
     color: #ffffff;
-    padding: 14px 36px;
+    padding: 14px 40px;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
@@ -167,30 +159,28 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   4. CONTENEDOR DEL VIDEO A PANTALLA COMPLETA (CORREGIDO SIN SCROLL)
+   5. VIDEO CONTENEDOR (INTRODUCCIÓN CINEMÁTICA)
    ========================================================================== */
 .video-fullscreen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    height: 100dvh; /* Evita que las barras de Safari/Chrome empujen el video hacia abajo */
+    height: 100dvh;
     background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 5000;
-    overflow: hidden; /* Corta cualquier desborde */
+    overflow: hidden;
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 .video-fullscreen video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ajuste cinematográfico que cubre la pantalla sin deformar */
-    object-position: center;
-    pointer-events: none; /* Evita pausas accidentales al tocar la pantalla */
+    object-fit: cover;
+    pointer-events: none;
 }
 
 .video-fullscreen.fade-out {
@@ -200,136 +190,221 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   5. CONTENIDO DE LA INVITACIÓN REAL (CON FONDO ADAPTABLE DE ALTA PRECISIÓN)
+   6. CONTENEDOR PRINCIPAL (TEXTURA DE PAPEL CONTINUO)
    ========================================================================== */
 .main-container {
     width: 100%;
-    max-width: 480px; /* Centrado fluido para simular pantalla móvil en PC */
+    max-width: 480px; 
     margin: 0 auto;
     position: relative;
-    
-    /* 1. TU NUEVA TEXTURA CORREGIDA POR IA */
     background-image: url('assets/fondo-general-estatico2.webp');
-    
-    /* 2. AJUSTE DE ESCALA NATURAL:
-       Regresamos a un valor intermedio (ej. 55%) para que las arrugas del papel 
-       no se vean gigantes ni borrosas. Ajusta este % a tu gusto para alejar o acercar.
-    */
     background-size: 100% auto; 
-    
-    /* 3. REPETICIÓN INFINITA VERTICAL PERFECTA:
-       Se repite suavemente hacia abajo (eje Y). Como tu IA alineó los bordes,
-       el salto entre repeticiones ahora será invisible. 
-       Mantenemos bloqueado el eje X (lados) para evitar las franjas.
-    */
     background-repeat: repeat-y; 
-    
-    /* Alineamos al centro del dispositivo */
     background-position: center top; 
-    
-    background-attachment: scroll; /* Scroll fluido nativo para dispositivos móviles */
+    background-attachment: scroll;
 }
 
-.main-container.hidden {
-    display: none;
-}
+.main-container.hidden { display: none; }
 
 .invitation-details {
     width: 100%;
     transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-/* Estilo común para CADA una de las secciones de la invitación */
 .invitation-section {
     width: 100%;
-    min-height: 100vh;  /* Soporte base */
-    min-height: 100dvh; /* Altura dinámica exacta para ignorar barras de Safari/Chrome */
+    min-height: 100dvh; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 24px;
-    
-    /* Mantenemos fondo transparente por defecto para que se transluzca la textura de papel de fondo */
+    padding: 60px 28px;
     background-color: transparent; 
-    
-    /* Dejamos preparada la infraestructura por si en el futuro quieres un fondo fijo por sección (Parallax) */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    /* Separador minimalista muy sutil para delimitar los bloques sobre la textura */
-    border-bottom: 1px solid rgba(17, 17, 17, 0.06); 
 }
 
-/* Contenedor interno para centrar los textos y elementos */
 .section-content {
     width: 100%;
     text-align: center;
-    z-index: 2; /* Asegura que el contenido quede por encima de cualquier capa */
+    z-index: 2;
 }
 
-.section-confirmacion {
-    border-bottom: none; /* El último bloque no lleva línea de separación */
-}
-
-/* ==========================================================================
-   RESERVAS PARA CAMBIOS DE BACKGROUND FUTUROS
-   (Aquí es donde aplicarás los fondos específicos cuando lo requieras)
-   ========================================================================== */
-.section-inicio {
-    /* Listo para un fondo único en el futuro, ej: background-color: #f9f9f9; */
-}
-
-.section-contador {
-    /* Listo para un acento futuro */
-}
-
-.section-ubicacion {
-    /* Listo para imagen o color */
-}
-
-.section-regalos {
-}
-
-.section-confirmacion {
-    border-bottom: none; /* La última sección no lleva borde inferior */
-}
-
-/* ==========================================================================
-   ESTILOS TEXTOS INTERNOS
-   ========================================================================== */
-.main-wedding-title {
+/* Títulos de Sección Secundarios */
+.section-subtitle {
     font-family: var(--font-titles);
-    font-size: 2.4rem;
-    font-weight: 300;
-    color: var(--accent-color-1);
-    margin: 15px 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   7. COMPONENTES Y ESTILOS ESPECÍFICOS DE SECCIÓN
+   ========================================================================== */
+
+/* SECCIÓN: INICIO */
+.main-wedding-title {
+    font-family: var(--font-script); /* Aplicación de tu fuente local exclusiva */
+    font-size: 3.4rem;
+    font-weight: normal;
+    color: var(--text-main);
+    margin: 24px 0;
+    line-height: 1.2;
 }
 
 .quote {
     font-family: var(--font-titles);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-style: italic;
     color: var(--text-muted);
+    padding: 0 10px;
 }
 
-.placeholder-box {
-    border: 1px dashed var(--text-muted);
-    padding: 20px;
-    margin-top: 20px;
+.wedding-date-text {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 16px;
+}
+
+/* SECCIÓN: CUENTA REGRESIVA TIPOGRÁFICA */
+.countdown-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.countdown-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+}
+
+.countdown-value {
+    font-family: var(--font-titles);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.countdown-label {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+/* SECCIÓN: LOGÍSTICA ASIMÉTRICA */
+.logistics-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.logistics-card h4 {
+    font-family: var(--font-titles);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.logistics-time {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.logistics-detail {
     font-size: 0.9rem;
     color: var(--text-muted);
 }
 
-.btn-accent-placeholder {
+.logistics-divider-line {
+    width: 40px;
+    height: 1px;
+    background-color: var(--subtle-line);
+    margin: 0 auto;
+}
+
+/* SECCIÓN: DRESS CODE */
+.dress-code-style {
+    font-family: var(--font-titles);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.dress-code-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    max-width: 320px;
+    margin: 0 auto 28px auto;
+}
+
+.color-palette-container {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
+
+.color-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+/* SECCIÓN: REGALOS Y CONFIRMACIÓN */
+.gifts-text, .rsvp-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 340px;
+    margin: 0 auto 12px auto;
+}
+
+.rsvp-deadline {
+    font-family: var(--font-titles);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-main);
+    margin-bottom: 16px;
+}
+
+/* BOTÓN PREMIUM OUTLINE */
+.btn-outline-elegant {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid rgba(26, 26, 26, 0.2);
+    padding: 12px 28px;
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-elegant:hover, .btn-outline-elegant:active {
+    border-color: var(--text-main);
     background-color: var(--text-main);
     color: #ffffff;
-    border: none;
-    padding: 12px 24px;
-    margin-top: 20px;
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
+}
+
+.btn-outline-elegant.text-important {
+    letter-spacing: 1.5px;
+    font-weight: 400;
 }
