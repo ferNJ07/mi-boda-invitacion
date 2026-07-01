@@ -240,10 +240,10 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   7. INTERFAZ INTERNA Y CORE DE ANIMACIÓN (CORREGIDO)
+   7. INTERFAZ INTERNA Y CORE DE ANIMACIÓN (ORQUESTACIÓN LINEAL ESTRICTA)
    ========================================================================== */
 
-/* Contenedor de los nombres: preparamos el texto para ser revelado */
+/* 1. Nombres de los novios: estado base oculto */
 .main-wedding-title.signature-writing {
     font-family: var(--font-script); 
     font-size: 3.6rem;
@@ -254,50 +254,46 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     display: inline-block;
     position: relative;
     
-    /* Estado inicial: oculto mediante opacidad base para evitar parpadeos */
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
 }
 
-/* Cuando el script activa la invitación, hacemos visible el bloque y disparamos el trazo */
+/* Disparador: Se activa el contenedor y empieza el trazo */
 .fade-in-content .signature-writing {
     opacity: 1;
-    /* Usamos un clip-path lineal de izquierda a derecha, que es 100% compatible y ultra fluido en móviles */
-    animation: writeSignatureMobile 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    animation-delay: 0.5s; /* Pequeño respiro de 500ms tras terminar el video */
+    /* Duración: 3 segundos exactos para un trazo natural y pausado */
+    animation: writeSignatureMobile 3.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: 0.5s; /* Breve pausa inicial al cargar el papel */
 }
 
-/* Orquestación cronológica de los elementos secundarios (Frase y Fecha) */
-.reveal-delayed-slow {
-    opacity: 0;
-    transform: translateY(8px);
-}
-
+/* 2. Bloques secundarios: estado base 100% oculto */
+.reveal-delayed-slow, 
 .reveal-delayed-fast {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px); /* Ligero desplazamiento hacia abajo para el efecto fade-up */
+    will-change: opacity, transform; /* Optimización extra para la GPU del Pixel 10 */
 }
 
-/* Revelado de la frase superior: aparece suavemente mientras se escribe el nombre */
+/* La FRASE SUPERIOR aparece HASTA QUE el nombre se termina de escribir (0.5s iniciales + 3.0s de trazo = 3.5s) */
 .fade-in-content .reveal-delayed-slow {
-    animation: revealSecondaryTexts 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 1.2s; 
+    animation: revealSecondaryTexts 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 3.5s; 
 }
 
-/* Revelado de la fecha inferior: aparece justo cuando el nombre se termina de escribir */
+/* La FECHA INFERIOR aparece HASTA QUE la frase termina de revelarse (3.5s + 1.0s de la frase = 4.5s) */
 .fade-in-content .reveal-delayed-fast {
-    animation: revealSecondaryTexts 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 2.8s; 
+    animation: revealSecondaryTexts 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 4.5s; 
 }
 
-/* FOTOGRAMAS CLAVE (KEYFRAMES) OPTIMIZADOS PARA RENDIMIENTO MÓVIL */
+/* FOTOGRAMAS CLAVE (KEYFRAMES) DE ALTA PRECISIÓN MÓVIL */
 @keyframes writeSignatureMobile {
     0% {
-        /* El texto se encuentra recortado completamente a la izquierda */
+        -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
         clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
     }
     100% {
-        /* Revelamos el 100% del contenedor de izquierda a derecha simulando la escritura */
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 }
@@ -305,7 +301,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 @keyframes revealSecondaryTexts {
     0% {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(10px);
     }
     100% {
         opacity: 1;
