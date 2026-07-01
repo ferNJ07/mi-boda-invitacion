@@ -1,8 +1,8 @@
 /* ==========================================================================
-   0. DECLARACIÓN DE FUENTES LOCALES (ALTA EFICIENCIA WOFF2)
+   0. DECLARACIÓN DE FUENTES LOCALES (WOFF2)
    ========================================================================== */
 @font-face {
-    font-family: 'NoviosElegantScript';
+    font-family: 'CherolinaLocal';
     src: url('assets/fonts/Cherolina.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
@@ -29,21 +29,20 @@
    1. VARIABLES Y DISEÑO EDITORIAL
    ========================================================================== */
 :root {
-    /* Tonos Lujo Silencioso (Minimalismo Orgánico) */
     --primary-bg: #ffffff;       
     --secondary-bg: #0d0d0d;     
     --text-main: #1a1a1a;        
     --text-muted: #707070;       
     --subtle-line: rgba(26, 26, 26, 0.05);
 
-    /* Mapeo de Fuentes Locales */
-    --font-script: 'NoviosElegantScript', cursive;
+    /* Mapeo de Fuentes */
+    --font-script: 'CherolinaLocal', cursive;
     --font-titles: 'CormorantGaramondLocal', Georgia, serif;
     --font-body: 'InterLocal', system-ui, -apple-system, sans-serif;
 }
 
 /* ==========================================================================
-   2. RESETS INTERNOS Y OPTIMIZACIÓN MÓVIL
+   2. RESETS Y OPTIMIZACIÓN MÓVIL
    ========================================================================== */
 * {
     box-sizing: border-box;
@@ -68,7 +67,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   3. BOTÓN FLOTANTE DE CONTROL DE AUDIO (.MP3)
+   3. BOTÓN FLOTANTE DE CONTROL DE AUDIO
    ========================================================================== */
 .audio-control-btn {
     position: fixed;
@@ -124,12 +123,14 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     pointer-events: none;
 }
 
-.wedding-title {
-    font-family: var(--font-titles);
-    font-size: 2.6rem;
-    font-weight: 400;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+/* Nueva clase para el Splash usando Cherolina en Blanco */
+.wedding-title-splash {
+    font-family: var(--font-script);
+    font-size: 3.5rem;
+    font-weight: normal;
+    color: #ffffff;
+    margin-bottom: 5px;
+    line-height: 1.2;
 }
 
 .wedding-subtitle {
@@ -227,7 +228,6 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     z-index: 2;
 }
 
-/* Títulos de Sección Secundarios */
 .section-subtitle {
     font-family: var(--font-titles);
     font-size: 1.6rem;
@@ -238,13 +238,11 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   7. COMPONENTES Y ESTILOS ESPECÍFICOS DE SECCIÓN
+   7. DETALLES Y COMPONENTES INTERNOS
    ========================================================================== */
-
-/* SECCIÓN: INICIO */
 .main-wedding-title {
-    font-family: var(--font-script); /* Aplicación de tu fuente local exclusiva */
-    font-size: 3.4rem;
+    font-family: var(--font-script); 
+    font-size: 3.6rem;
     font-weight: normal;
     color: var(--text-main);
     margin: 24px 0;
@@ -268,7 +266,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-top: 16px;
 }
 
-/* SECCIÓN: CUENTA REGRESIVA TIPOGRÁFICA */
+/* CUENTA REGRESIVA TRABAJADA EN RETÍCULA */
 .countdown-container {
     display: flex;
     justify-content: space-around;
@@ -301,13 +299,12 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-top: 8px;
 }
 
-/* SECCIÓN: LOGÍSTICA ASIMÉTRICA */
+/* DISEÑO LOGÍSTICO ASIMÉTRICO */
 .logistics-wrapper {
     display: flex;
     flex-direction: column;
     gap: 28px;
     margin-bottom: 40px;
-    text-align: center;
 }
 
 .logistics-card h4 {
@@ -339,7 +336,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin: 0 auto;
 }
 
-/* SECCIÓN: DRESS CODE */
+/* SECCIÓN PALETAS DRESS CODE */
 .dress-code-style {
     font-family: var(--font-titles);
     font-size: 1.4rem;
@@ -367,7 +364,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
 }
 
-/* SECCIÓN: REGALOS Y CONFIRMACIÓN */
+/* REGALOS Y RSVP */
 .gifts-text, .rsvp-text {
     font-size: 0.9rem;
     color: var(--text-muted);
@@ -383,7 +380,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-bottom: 16px;
 }
 
-/* BOTÓN PREMIUM OUTLINE */
+/* BOTÓN PREMIUM OUTLINE STYLE */
 .btn-outline-elegant {
     background-color: transparent;
     color: var(--text-main);
