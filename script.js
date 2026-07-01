@@ -37,14 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /**
-     * Paso 2: El video termina y revela el contenido de la invitación
+     * Paso 2: El video termina y revela el contenido del pergamino
      */
     video.addEventListener("ended", () => {
         videoContainer.classList.add("fade-out");
         invitationDetails.classList.remove("hidden-content");
         invitationDetails.classList.add("fade-in-content");
 
-        // Inicializar el conteo matemático dinámico hacia el 2027
+        // Inicializar el conteo matemático dinámico
         initWeddingCountdown();
 
         setTimeout(() => {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /**
-     * Paso 3: Controlador de Audio Flotante Mute / Unmute
+     * Paso 3: Controlador Flotante Mute / Unmute
      */
     btnAudioControl.addEventListener("click", () => {
         if (bgMusic.paused) {
@@ -88,5 +88,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            // Conversión del tiempo a unidades lógicas
             const d = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) /Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Inyección en el DOM con formato de dos dígitos
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+        };
+
+        // Ejecución inmediata para evitar el salto de un segundo en blanco
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    }
+});
