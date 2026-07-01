@@ -1,5 +1,5 @@
 /* ==========================================================================
-   0. DECLARACIÓN DE FUENTES LOCALES (WOFF2)
+   0. DECLARACIÓN DE FUENTES (MÉTODO GOOGLE FONTS + RESERVA LOCAL FUTURA)
    ========================================================================== */
 @font-face {
     font-family: 'CherolinaLocal';
@@ -9,21 +9,22 @@
     font-display: swap;
 }
 
+/* DESCOMENTA ESTAS LÍNEAS EN EL FUTURO SI REEMPLAZAS GOOGLE FONTS POR RECURSOS PROPIOS LOCALES
 @font-face {
     font-family: 'CormorantGaramondLocal';
     src: url('assets/fonts/cormorant-garamond-regular.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'MontserratLocal';
+    src: url('assets/fonts/montserrat-light.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
-
-@font-face {
-    font-family: 'InterLocal';
-    src: url('assets/fonts/inter-light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
+*/
 
 /* ==========================================================================
    1. VARIABLES Y DISEÑO EDITORIAL
@@ -35,10 +36,10 @@
     --text-muted: #707070;       
     --subtle-line: rgba(26, 26, 26, 0.05);
 
-    /* Mapeo de Fuentes */
-    --font-script: 'CherolinaLocal', cursive;
-    --font-titles: 'CormorantGaramondLocal', Georgia, serif;
-    --font-body: 'InterLocal', system-ui, -apple-system, sans-serif;
+    /* Asignación de Fuentes del Ecosistema de Google Fonts */
+    --font-script: 'CherolinaLocal', cursive; /* Mantiene tu recurso local clave */
+    --font-titles: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Montserrat', system-ui, -apple-system, sans-serif;
 }
 
 /* ==========================================================================
@@ -123,7 +124,6 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     pointer-events: none;
 }
 
-/* Nueva clase para el Splash usando Cherolina en Blanco */
 .wedding-title-splash {
     font-family: var(--font-script);
     font-size: 3.5rem;
@@ -134,7 +134,9 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 .wedding-subtitle {
-    font-size: 0.85rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 5px;
     color: rgba(255, 255, 255, 0.75);
@@ -147,7 +149,8 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     color: #ffffff;
     padding: 14px 40px;
     font-family: var(--font-body);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
@@ -228,10 +231,11 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     z-index: 2;
 }
 
+/* Títulos con Cormorant Garamond 500 */
 .section-subtitle {
     font-family: var(--font-titles);
-    font-size: 1.6rem;
-    font-weight: 400;
+    font-size: 1.65rem;
+    font-weight: 500;
     letter-spacing: 2px;
     margin-bottom: 32px;
     color: var(--text-main);
@@ -251,15 +255,18 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 
 .quote {
     font-family: var(--font-titles);
-    font-size: 1.15rem;
+    font-size: 1.25rem;
+    font-weight: 500;
     font-style: italic;
     color: var(--text-muted);
     padding: 0 10px;
 }
 
+/* Textos secundarios con Montserrat 400/500 */
 .wedding-date-text {
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 500;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -282,17 +289,19 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     min-width: 70px;
 }
 
+/* Números grandes destacados con Cormorant 600 */
 .countdown-value {
     font-family: var(--font-titles);
-    font-size: 2.8rem;
-    font-weight: 300;
+    font-size: 3rem;
+    font-weight: 600;
     color: var(--text-main);
     line-height: 1;
 }
 
 .countdown-label {
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--text-muted);
@@ -307,17 +316,19 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-bottom: 40px;
 }
 
+/* Títulos internos logísticos con Cormorant 500 */
 .logistics-card h4 {
     font-family: var(--font-titles);
-    font-size: 1.25rem;
-    font-weight: 400;
+    font-size: 1.35rem;
+    font-weight: 500;
     letter-spacing: 1px;
     margin-bottom: 6px;
 }
 
 .logistics-time {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 600;
     letter-spacing: 1px;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -325,7 +336,9 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 .logistics-detail {
-    font-size: 0.9rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
     color: var(--text-muted);
 }
 
@@ -339,13 +352,16 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 /* SECCIÓN PALETAS DRESS CODE */
 .dress-code-style {
     font-family: var(--font-titles);
-    font-size: 1.4rem;
+    font-size: 1.45rem;
+    font-weight: 500;
     letter-spacing: 1px;
     margin-bottom: 12px;
 }
 
 .dress-code-note {
-    font-size: 0.85rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 400;
     color: var(--text-muted);
     max-width: 320px;
     margin: 0 auto 28px auto;
@@ -366,7 +382,9 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 
 /* REGALOS Y RSVP */
 .gifts-text, .rsvp-text {
-    font-size: 0.9rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
     color: var(--text-muted);
     max-width: 340px;
     margin: 0 auto 12px auto;
@@ -374,21 +392,23 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 
 .rsvp-deadline {
     font-family: var(--font-titles);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
     font-style: italic;
     color: var(--text-main);
     margin-bottom: 16px;
 }
 
-/* BOTÓN PREMIUM OUTLINE STYLE */
+/* BOTÓN PREMIUM OUTLINE STYLE CON MONTSERRAT 600 */
 .btn-outline-elegant {
     background-color: transparent;
     color: var(--text-main);
     border: 1px solid rgba(26, 26, 26, 0.2);
-    padding: 12px 28px;
+    padding: 13px 32px;
     margin-top: 16px;
     font-family: var(--font-body);
     font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
@@ -399,9 +419,4 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     border-color: var(--text-main);
     background-color: var(--text-main);
     color: #ffffff;
-}
-
-.btn-outline-elegant.text-important {
-    letter-spacing: 1.5px;
-    font-weight: 400;
 }
