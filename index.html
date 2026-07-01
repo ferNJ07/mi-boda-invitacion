@@ -1,61 +1,140 @@
-<div class="invitation-frame">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Invitación de Boda — Fernando & Valeria</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <!-- 1. HERO PRINCIPAL -->
-    <header class="invitation-section">
-        <p class="t-body-editorial" style="font-style: italic; margin-bottom: 1.5rem;">
-            "Con la bendición de Dios y nuestros padres..."
-        </p>
-        <h1 class="t-hero">Fernando & Valeria</h1>
-        <span class="subtle-divider">✦</span>
-        <p class="t-logistics-label" style="color: var(--accent-gold);">21 . 03 . 2027</p>
-    </header>
+    <audio id="bg-music" loop preload="auto">
+        <source src="assets/songSite.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
 
-    <!-- 2. ENCABEZADO DE SECCIÓN Y TEXTO DESCRIPTIVO -->
-    <section class="invitation-section" style="background-color: var(--bg-beige);">
-        <h2 class="t-section-title">Nuestra Historia</h2>
-        <p class="t-section-subtitle">El inicio de un nuevo viaje</p>
-        
-        <div class="subtle-divider">❖</div>
-        
-        <p class="t-body-editorial">
-            Hay instantes en la vida que son eternos. Compartir nuestro camino con las personas que más amamos es el regalo más grande. Te invitamos a celebrar el inicio de nuestra unión.
-        </p>
-    </section>
+    <button id="btn-audio-control" class="audio-control-btn hidden" aria-label="Control de música">
+        <svg class="icon-playing" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <svg class="icon-muted hidden" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73l6 6L21 21l-16.73-16.73zM14 7h4V3h-6v5.18l2 2V7z"/>
+        </svg>
+    </button>
 
-    <!-- 3. FECHA Y HORA DEL EVENTO (BLOQUE LOGÍSTICO REFINADO) -->
-    <section class="invitation-section">
-        <h2 class="t-section-title">Celebración</h2>
-        <div class="subtle-divider">✦</div>
-        
-        <div style="margin-bottom: 3rem;">
-            <p class="t-logistics-label">Ceremonia Religiosa</p>
-            <p class="t-logistics-time">17:00 Hrs</p>
-            <p class="t-body-editorial">Catedral Metropolitana de Monterrey</p>
-            <p class="t-body-editorial" style="font-size: var(--font-size-meta);">Centro, Monterrey, N.L.</p>
+    <!-- SPLASH SCREEN CON LA FUENTE CHEROLINA EN BLANCO -->
+    <div id="splash-screen" class="splash-container">
+        <div class="splash-content">
+            <h1 class="wedding-title-splash">Fernando & Valeria</h1>
+            <p class="wedding-subtitle">21 . 03 . 2027</p>
+            <button id="btn-entrar" class="btn-elegant">Abrir Invitación</button>
         </div>
+    </div>
+
+    <main id="main-content" class="main-container hidden">
         
-        <div>
-            <p class="t-logistics-label">Recepción de Gala</p>
-            <p class="t-logistics-time">19:30 Hrs</p>
-            <p class="t-body-editorial">Salón de Eventos San Pedro</p>
-            <p class="t-body-editorial" style="font-size: var(--font-size-meta);">Valle Oriente, Garza García, N.L.</p>
+        <section id="video-fullscreen-container" class="video-fullscreen">
+            <video id="wedding-video" playsinline muted autoplay preload="auto">
+                <source src="assets/tu_video2.mp4" type="video/mp4">
+                Tu navegador no soporta video.
+            </video>
+        </section>
+
+        <div id="invitation-details" class="invitation-details hidden-content">
+            
+            <!-- SECCIÓN 1: INICIO -->
+            <section id-seccion="inicio" class="invitation-section section-inicio">
+                <div class="section-content">
+                    <p class="quote">"El amor no se mide en tiempo, sino en instantes como este..."</p>
+                    <h2 class="main-wedding-title">Fernando & Valeria</h2>
+                    <p class="wedding-date-text">21.03.2027</p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: CUENTA REGRESIVA TIPOGRÁFICA -->
+            <section id-seccion="contador" class="invitation-section section-contador">
+                <div class="section-content">
+                    <h3 class="section-subtitle">Nuestra Cuenta Regresiva</h3>
+                    <div class="countdown-container">
+                        <div class="countdown-block">
+                            <span id="days" class="countdown-value">00</span>
+                            <span class="countdown-label">Días</span>
+                        </div>
+                        <div class="countdown-block">
+                            <span id="hours" class="countdown-value">00</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <div class="countdown-block">
+                            <span id="minutes" class="countdown-value">00</span>
+                            <span class="countdown-label">Min</span>
+                        </div>
+                        <div class="countdown-block">
+                            <span id="seconds" class="countdown-value">00</span>
+                            <span class="countdown-label">Seg</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: UBICACIÓN ASIMÉTRICA -->
+            <section id-seccion="ubicacion" class="invitation-section section-ubicacion">
+                <div class="section-content">
+                    <h3 class="section-subtitle">Lugar y Hora</h3>
+                    <div class="logistics-wrapper">
+                        <div class="logistics-card">
+                            <h4>Ceremonia Religiosa</h4>
+                            <p class="logistics-time">17:00 hrs</p>
+                            <p class="logistics-detail">Lugar por definir, Monterrey, N.L.</p>
+                        </div>
+                        <div class="logistics-divider-line"></div>
+                        <div class="logistics-card">
+                            <h4>Recepción</h4>
+                            <p class="logistics-time">19:30 hrs</p>
+                            <p class="logistics-detail">Lugar por definir, Monterrey, N.L.</p>
+                        </div>
+                    </div>
+                    <button class="btn-outline-elegant">Ver Ubicación en Mapa</button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: CÓDIGO DE VESTIMENTA -->
+            <section id-seccion="vestimenta" class="invitation-section section-vestimenta">
+                <div class="section-content">
+                    <h3 class="section-subtitle">Código de Vestimenta</h3>
+                    <p class="dress-code-style">Formal / Etiqueta</p>
+                    <p class="dress-code-note">Agradecemos tu apoyo vistiendo dentro de nuestra paleta de colores sugerida para la temporada primaveral:</p>
+                    <div class="color-palette-container">
+                        <div class="color-circle" style="background-color: #E6DFD3;" title="Arena"></div>
+                        <div class="color-circle" style="background-color: #C3B091;" title="Khaki"></div>
+                        <div class="color-circle" style="background-color: #8A9A86;" title="Verde Sabio"></div>
+                        <div class="color-circle" style="background-color: #556B2F;" title="Oliva"></div>
+                        <div class="color-circle" style="background-color: #2F4F4F;" title="Slate"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: MESA DE REGALOS -->
+            <section id-seccion="regalos" class="invitation-section section-regalos">
+                <div class="section-content">
+                    <h3 class="section-subtitle">Mesa de Regalos</h3>
+                    <p class="gifts-text">Tu presencia es nuestro mejor regalo, pero si deseas hacernos un detalle, ponemos a tu disposición nuestras opciones:</p>
+                    <button class="btn-outline-elegant">Ver Datos Bancarios</button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 6: CONFIRMACIÓN -->
+            <section id-seccion="confirmacion" class="invitation-section section-confirmacion">
+                <div class="section-content">
+                    <h3 class="section-subtitle">Confirmar Asistencia</h3>
+                    <p class="rsvp-deadline">Favor de confirmar antes del 15 de Febrero de 2027</p>
+                    <p class="rsvp-text">Tu lugar está reservado. Por favor, haznos saber si contaremos con tu valiosa presencia.</p>
+                    <button class="btn-outline-elegant text-important">Confirmar por WhatsApp</button>
+                </div>
+            </section>
+
         </div>
-    </section>
+    </main>
 
-    <!-- 4. COMPONENTE INTERACTIVO: BOTÓN RSVP -->
-    <section class="invitation-section" style="background-color: var(--bg-beige); min-height: 60dvh;">
-        <h2 class="t-section-title">Confirmación</h2>
-        <p class="t-body-editorial" style="margin-top: 1rem;">
-            Para nosotros es fundamental contar con tu presencia en este día tan significativo.
-        </p>
-        <p class="t-logistics-label" style="color: var(--accent-gold); margin-top: 1.5rem; font-size: var(--font-size-meta);">
-            Favor de confirmar antes del 15 de febrero de 2027
-        </p>
-        
-        <!-- Botón RSVP con accesibilidad nativa y respuesta táctil -->
-        <button class="btn-rsvp-premium" aria-label="Confirmar asistencia por WhatsApp">
-            Confirmar Asistencia
-        </button>
-    </section>
-
-</div>
+    <script src="script.js"></script>
+</body>
+</html>
