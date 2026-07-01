@@ -36,8 +36,7 @@
     --text-muted: #707070;       
     --subtle-line: rgba(26, 26, 26, 0.05);
 
-    /* Asignación de Fuentes del Ecosistema de Google Fonts */
-    --font-script: 'CherolinaLocal', cursive; /* Mantiene tu recurso local clave */
+    --font-script: 'CherolinaLocal', cursive; 
     --font-titles: 'Cormorant Garamond', Georgia, serif;
     --font-body: 'Montserrat', system-ui, -apple-system, sans-serif;
 }
@@ -231,7 +230,6 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     z-index: 2;
 }
 
-/* Títulos con Cormorant Garamond 500 */
 .section-subtitle {
     font-family: var(--font-titles);
     font-size: 1.65rem;
@@ -242,17 +240,76 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   7. DETALLES Y COMPONENTES INTERNOS
+   7. INTERFAZ INTERNA Y CORE DE ANIMACIÓN (EFECTO ESCRITURA DE NOMBRE)
    ========================================================================== */
-.main-wedding-title {
+
+/* Lógica de revelado por máscara para emular trazo manuscrito */
+.main-wedding-title.signature-writing {
     font-family: var(--font-script); 
     font-size: 3.6rem;
     font-weight: normal;
     color: var(--text-main);
     margin: 24px 0;
     line-height: 1.2;
+    display: inline-block;
+    position: relative;
+    
+    /* Configuración de Máscara de Degradado */
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 0%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 0%);
+    -webkit-mask-size: 300% 100%;
+    mask-size: 300% 100%;
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
 }
 
+/* Disparador automático de la máscara cuando la sección se vuelve activa */
+.fade-in-content .signature-writing {
+    animation: writeSignature 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Orquestación cronológica de los elementos secundarios (Frase y Fecha) */
+.reveal-delayed-slow, .reveal-delayed-fast {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.fade-in-content .reveal-delayed-slow {
+    animation: revealSecondary 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 2.2s; /* Aparece un instante antes de terminar el trazo */
+}
+
+.fade-in-content .reveal-delayed-fast {
+    animation: revealSecondary 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 3.2s; /* Aparece justo al finalizar la escritura de los nombres */
+}
+
+/* FOTOGRAMAS CLAVE (KEYFRAMES) DE ANIMACIÓN NATIVA CSS */
+@keyframes writeSignature {
+    0% {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+    }
+    100% {
+        -webkit-mask-position: 0% 0;
+        mask-position: 0% 0;
+    }
+}
+
+@keyframes revealSecondary {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   8. COMPONENTES DE INFORMACIÓN LOGÍSTICA
+   ========================================================================== */
 .quote {
     font-family: var(--font-titles);
     font-size: 1.25rem;
@@ -262,7 +319,6 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     padding: 0 10px;
 }
 
-/* Textos secundarios con Montserrat 400/500 */
 .wedding-date-text {
     font-family: var(--font-body);
     font-size: 0.85rem;
@@ -289,7 +345,6 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     min-width: 70px;
 }
 
-/* Números grandes destacados con Cormorant 600 */
 .countdown-value {
     font-family: var(--font-titles);
     font-size: 3rem;
@@ -316,7 +371,6 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-bottom: 40px;
 }
 
-/* Títulos internos logísticos con Cormorant 500 */
 .logistics-card h4 {
     font-family: var(--font-titles);
     font-size: 1.35rem;
@@ -399,7 +453,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-bottom: 16px;
 }
 
-/* BOTÓN PREMIUM OUTLINE STYLE CON MONTSERRAT 600 */
+/* BOTÓN PREMIUM OUTLINE STYLE */
 .btn-outline-elegant {
     background-color: transparent;
     color: var(--text-main);
