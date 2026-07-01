@@ -209,7 +209,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     position: relative;
     
     /* 1. TU NUEVA TEXTURA CORREGIDA POR IA */
-    background-image: url('assets/fondo-general-estatico2.png');
+    background-image: url('assets/fondo-general-estatico2.webp');
     
     /* 2. AJUSTE DE ESCALA NATURAL:
        Regresamos a un valor intermedio (ej. 55%) para que las arrugas del papel 
