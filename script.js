@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
         invitationDetails.classList.remove("hidden-content");
         invitationDetails.classList.add("fade-in-content");
 
-        // Arrancar el ciclo de la cuenta regresiva justo al abrir la carta
         initWeddingCountdown();
 
         setTimeout(() => {
@@ -73,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
      * MOTOR DE CUENTA REGRESIVA — OBJETIVO: 21 DE MARZO DE 2027
      */
     function initWeddingCountdown() {
-        // Configuración de la fecha de la boda en formato ISO estándar
         const targetDate = new Date("March 21, 2027 17:00:00").getTime();
 
         const updateCountdown = () => {
@@ -89,21 +87,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Cálculos matemáticos de conversión temporal
             const d = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((difference % (1000 * 60)) / 1000);
-
-            // Renderizado y formateo agregando ceros a la izquierda para simetría visual
-            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
-        };
-
-        // Ejecutar inmediatamente en la carga para prevenir el retraso de 1s del setInterval
-        updateCountdown();
-        const countdownInterval = setInterval(updateCountdown, 1000);
-    }
-});
+            const h = Math.floor((difference % (1000 * 6Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
