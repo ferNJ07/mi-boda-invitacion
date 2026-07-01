@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Invitación de Boda</title>
+    <title>Invitación de Boda — Fernando & Valeria</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Removidos los preconnects de Google Fonts para trabajar estrictamente con recursos locales -->
 </head>
 <body>
 
@@ -27,8 +25,8 @@
 
     <div id="splash-screen" class="splash-container">
         <div class="splash-content">
-            <h1 class="wedding-title"></h1>
-            <p class="wedding-subtitle"></p>
+            <h1 class="wedding-title">Fernando & Valeria</h1>
+            <p class="wedding-subtitle">21 . 03 . 2027</p>
             <button id="btn-entrar" class="btn-elegant">Abrir Invitación</button>
         </div>
     </div>
@@ -44,42 +42,98 @@
 
         <div id="invitation-details" class="invitation-details hidden-content">
             
+            <!-- SECCIÓN 1: INICIO -->
             <section id-seccion="inicio" class="invitation-section section-inicio">
                 <div class="section-content">
                     <p class="quote">"El amor no se mide en tiempo, sino en instantes como este..."</p>
                     <h2 class="main-wedding-title">Fernando & Valeria</h2>
-                    <p class="wedding-date-text">30.12.2026</p>
+                    <p class="wedding-date-text">21.03.2027</p>
                 </div>
             </section>
 
+            <!-- SECCIÓN 2: CUENTA REGRESIVA MINIMALISTA -->
             <section id-seccion="contador" class="invitation-section section-contador">
                 <div class="section-content">
-                    <h3>Nuestra Cuenta Regresiva</h3>
-                    <div class="placeholder-box">Contador (Días : Horas : Min : Seg)</div>
+                    <h3 class="section-subtitle">Nuestra Cuenta Regresiva</h3>
+                    <div class="countdown-container">
+                        <div class="countdown-block">
+                            <span id="days" class="countdown-value">00</span>
+                            <span class="countdown-label">Días</span>
+                        </div>
+                        <div class="countdown-block">
+                            <span id="hours" class="countdown-value">00</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <div class="countdown-block">
+                            <span id="minutes" class="countdown-value">00</span>
+                            <span class="countdown-label">Min</span>
+                        </div>
+                        <div class="countdown-block">
+                            <span id="seconds" class="countdown-value">00</span>
+                            <span class="countdown-label">Seg</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
+            <!-- SECCIÓN 3: UBICACIÓN ASIMÉTRICA -->
             <section id-seccion="ubicacion" class="invitation-section section-ubicacion">
                 <div class="section-content">
-                    <h3>Lugar y Hora</h3>
-                    <p>Ceremonia y Recepción en Monterrey, N.L.</p>
-                    <button class="btn-accent-placeholder">Ver Mapa</button>
+                    <h3 class="section-subtitle">Lugar y Hora</h3>
+                    
+                    <div class="logistics-wrapper">
+                        <div class="logistics-card">
+                            <h4>Ceremonia Religiosa</h4>
+                            <p class="logistics-time">17:00 hrs</p>
+                            <p class="logistics-detail">Lugar por definir, Monterrey, N.L.</p>
+                        </div>
+                        
+                        <div class="logistics-divider-line"></div>
+                        
+                        <div class="logistics-card">
+                            <h4>Recepción</h4>
+                            <p class="logistics-time">19:30 hrs</p>
+                            <p class="logistics-detail">Lugar por definir, Monterrey, N.L.</p>
+                        </div>
+                    </div>
+
+                    <button class="btn-outline-elegant">Ver Ubicación en Mapa</button>
                 </div>
             </section>
 
+            <!-- SECCIÓN 4: CÓDIGO DE VESTIMENTA (DRESS CODE) -->
+            <section id-seccion="vestimenta" class="invitation-section section-vestimenta">
+                <div class="section-content">
+                    <h3 class="section-subtitle">Código de Vestimenta</h3>
+                    <p class="dress-code-style">Formal / Etiqueta</p>
+                    <p class="dress-code-note">Agradecemos tu apoyo vistiendo dentro de nuestra paleta de colores sugerida para la temporada primaveral:</p>
+                    
+                    <div class="color-palette-container">
+                        <div class="color-circle" style="background-color: #E6DFD3;" title="Arena/Lino"></div>
+                        <div class="color-circle" style="background-color: #C3B091;" title="Khaki"></div>
+                        <div class="color-circle" style="background-color: #8A9A86;" title="Verde Sabio"></div>
+                        <div class="color-circle" style="background-color: #556B2F;" title="Oliva"></div>
+                        <div class="color-circle" style="background-color: #2F4F4F;" title="Mati"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: MESA DE REGALOS -->
             <section id-seccion="regalos" class="invitation-section section-regalos">
                 <div class="section-content">
-                    <h3>Mesa de Regalos</h3>
-                    <p>Tu presencia es nuestro mejor regalo...</p>
-                    <button class="btn-accent-placeholder">Ver Datos Bancarios</button>
+                    <h3 class="section-subtitle">Mesa de Regalos</h3>
+                    <p class="gifts-text">Tu presencia es nuestro mejor regalo, pero si deseas hacernos un detalle, ponemos a tu disposición nuestras opciones:</p>
+                    <button class="btn-outline-elegant">Ver Datos Bancarios</button>
                 </div>
             </section>
 
+            <!-- SECCIÓN 6: CONFIRMACIÓN (RSVP) -->
             <section id-seccion="confirmacion" class="invitation-section section-confirmacion">
                 <div class="section-content">
-                    <h3>Confirmar Asistencia</h3>
-                    <p>Por favor, confirma tu asistencia antes del evento.</p>
-                    <button class="btn-accent-placeholder">Confirmar por WhatsApp</button>
+                    <h3 class="section-subtitle">Confirmar Asistencia</h3>
+                    <p class="rsvp-deadline">Favor de confirmar antes del 15 de Febrero de 2027</p>
+                    <p class="rsvp-text">Tu lugar está reservado. Por favor, haznos saber si contaremos con tu valiosa presencia.</p>
+                    <button class="btn-outline-elegant text-important">Confirmar por WhatsApp</button>
                 </div>
             </section>
 
