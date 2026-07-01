@@ -335,7 +335,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-top: 16px;
 }
 
-/* CUENTA REGRESIVA TRABAJADA EN RETÍCULA */
+/* CUENTA REGRESIVA */
 .countdown-container {
     display: flex;
     justify-content: space-around;
@@ -440,7 +440,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
 }
 
-/* REGALOS Y RSVP */
+/* REGALOS Y INTERACTIVIDAD DE TARJETA DESLIZABLE (WISHLIST) */
 .gifts-text, .rsvp-text {
     font-family: var(--font-body);
     font-size: 0.85rem;
@@ -450,6 +450,59 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin: 0 auto 12px auto;
 }
 
+.wishlist-sliding-card {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-15px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+/* Estado activo: se revela imitando un tarjetón físico premium */
+.wishlist-sliding-card.active {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 32px;
+}
+
+.wishlist-card-content {
+    background-color: rgba(255, 255, 255, 0.75); /* Sutil transparencia sobre el fondo de papel */
+    border: 1px solid rgba(26, 26, 26, 0.08);
+    padding: 28px 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+    backdrop-filter: blur(4px); /* Refinamiento digital moderno */
+}
+
+.wishlist-card-content h4 {
+    font-family: var(--font-titles);
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.wishlist-card-content p {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* CONFIGURACIÓN DE ENLACE COMO BOTÓN */
+.wishlist-card-content a.btn-outline-elegant {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 0;
+    width: 100%;
+}
+
+/* REGALOS Y RSVP END */
 .rsvp-deadline {
     font-family: var(--font-titles);
     font-size: 1.2rem;
