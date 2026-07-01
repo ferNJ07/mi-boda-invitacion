@@ -240,10 +240,10 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   7. INTERFAZ INTERNA Y CORE DE ANIMACIÓN (ORQUESTACIÓN LINEAL ESTRICTA)
+   7. INTERFAZ INTERNA Y CORE DE ANIMACIÓN (FIX DE PARPADEO INTEGRADO)
    ========================================================================== */
 
-/* 1. Nombres de los novios: estado base oculto */
+/* 1. Nombres de los novios: estado base 100% oculto y recortado desde el nacimiento */
 .main-wedding-title.signature-writing {
     font-family: var(--font-script); 
     font-size: 3.6rem;
@@ -254,39 +254,43 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     display: inline-block;
     position: relative;
     
+    /* Forzamos el recorte a cero aquí para evitar que el texto parpadee al cargar el contenedor */
+    -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    
     opacity: 0;
-    transition: opacity 0.2s ease;
+    will-change: transform, clip-path, opacity; /* Alerta a la GPU del teléfono para un renderizado limpio */
 }
 
-/* Disparador: Se activa el contenedor y empieza el trazo */
+/* Disparador: El contenedor se vuelve activo y arranca el trazo secuencial */
 .fade-in-content .signature-writing {
     opacity: 1;
-    /* Duración: 3 segundos exactos para un trazo natural y pausado */
+    /* Duración de 3 segundos para un trazo manuscrito natural */
     animation: writeSignatureMobile 3.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    animation-delay: 0.5s; /* Breve pausa inicial al cargar el papel */
+    animation-delay: 0.5s; /* Pausa inicial de cortesía sobre el papel */
 }
 
-/* 2. Bloques secundarios: estado base 100% oculto */
+/* 2. Bloques secundarios: estado base oculto */
 .reveal-delayed-slow, 
 .reveal-delayed-fast {
     opacity: 0;
-    transform: translateY(10px); /* Ligero desplazamiento hacia abajo para el efecto fade-up */
-    will-change: opacity, transform; /* Optimización extra para la GPU del Pixel 10 */
+    transform: translateY(10px);
+    will-change: opacity, transform;
 }
 
-/* La FRASE SUPERIOR aparece HASTA QUE el nombre se termina de escribir (0.5s iniciales + 3.0s de trazo = 3.5s) */
+/* La frase superior aparece estrictamente al terminar el nombre (0.5s + 3.0s = 3.5s) */
 .fade-in-content .reveal-delayed-slow {
     animation: revealSecondaryTexts 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     animation-delay: 3.5s; 
 }
 
-/* La FECHA INFERIOR aparece HASTA QUE la frase termina de revelarse (3.5s + 1.0s de la frase = 4.5s) */
+/* La fecha aparece estrictamente al terminar la frase (3.5s + 1.0s = 4.5s) */
 .fade-in-content .reveal-delayed-fast {
     animation: revealSecondaryTexts 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     animation-delay: 4.5s; 
 }
 
-/* FOTOGRAMAS CLAVE (KEYFRAMES) DE ALTA PRECISIÓN MÓVIL */
+/* KEYFRAMES DE ANIMACIÓN NATIVA */
 @keyframes writeSignatureMobile {
     0% {
         -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
