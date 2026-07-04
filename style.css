@@ -314,7 +314,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   8. COMPONENTES DE INFORMACIÓN LOGÍSTICA
+   8. COMPONENTES DE INFORMACIÓN LOGÍSTICA Y GALERÍA EDITORIAL
    ========================================================================== */
 .quote {
     font-family: var(--font-titles);
@@ -369,6 +369,41 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-top: 8px;
 }
 
+/* LA NUEVA RETÍCULA EDITORIAL DECONSTRUIDA (COMPATIBLE MÓVIL) */
+.gallery-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    width: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid rgba(26, 26, 26, 0.06); 
+    padding: 5px; /* Efecto paspartú físico premium */
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.015);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Bloques asimétricos fijos para evitar CLS en el Pixel 10 */
+.item-vertical {
+    grid-row: span 2;
+    height: 254px;
+}
+
+.item-horizontal {
+    height: 120px;
+}
+
 /* DISEÑO LOGÍSTICO ASIMÉTRICO */
 .logistics-wrapper {
     display: flex;
@@ -409,7 +444,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin: 0 auto;
 }
 
-/* SECCIÓN PALETAS DRESS CODE — NUEVA ARQUITECTURA ESTILO PANTONE */
+/* SECCIÓN PALETAS VESTIMENTA (RETORNO A CÍRCULOS MINIMALISTAS) */
 .dress-code-style {
     font-family: var(--font-titles);
     font-size: 1.45rem;
@@ -427,68 +462,36 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin: 0 auto 36px auto;
 }
 
-/* Contenedor flexible con wrap para que las tarjetas se acomoden orgánicamente en móviles */
-.pantone-palette-container {
+.color-palette-container {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    max-width: 400px;
+    gap: 16px;
+    max-width: 420px;
     margin: 0 auto;
 }
 
-/* Tarjeta Pantone Física Digital */
-.pantone-card {
-    background-color: #ffffff;
-    border: 1px solid rgba(26, 26, 26, 0.08);
-    width: 76px;
-    height: 114px; /* Proporción clásica de un muestrario de color profesional */
+.palette-item {
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-    transition: transform 0.3s ease;
+    align-items: center;
+    gap: 8px;
 }
 
-.pantone-card:active {
-    transform: scale(0.96);
+.color-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
-/* Bloque superior de Color Puro */
-.pantone-color-block {
-    width: 100%;
-    height: 74px; /* Ocupa el área mayoritaria de la tarjeta */
-}
-
-/* Área inferior de metadatos */
-.pantone-meta {
-    width: 100%;
-    flex-grow: 1;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 6px 6px;
-    text-align: left;
-}
-
-.pantone-id {
+.color-label {
     font-family: var(--font-body);
-    font-size: 0.48rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--text-main);
-    line-height: 1;
-    margin-bottom: 3px;
-}
-
-.pantone-name {
-    font-family: var(--font-body);
-    font-size: 0.48rem;
-    font-weight: 400;
+    font-size: 0.65rem;
+    font-weight: 500;
     color: var(--text-muted);
-    line-height: 1.1;
-    white-space: nowrap; /* Evita saltos de línea molestos en textos cortos */
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* INTERACTIVIDAD DE TARJETA DESLIZABLE (WISHLIST) */
