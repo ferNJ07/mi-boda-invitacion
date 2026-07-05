@@ -44,8 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
         invitationDetails.classList.remove("hidden-content");
         invitationDetails.classList.add("fade-in-content");
 
-        // Inicializar el conteo matemático dinámico
+        // Inicializar servicios dinámicos del pergamino
         initWeddingCountdown();
+        initScrollReveal();
 
         setTimeout(() => {
             videoContainer.style.display = "none";
@@ -88,21 +89,55 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Conversión del tiempo a unidades lógicas
             const d = Math.floor(difference / (1000 * 60 * 60 * 24));
             const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((difference % (1000 * 60)) / 1000);
 
-            // Inyección en el DOM con formato de dos dígitos
             document.getElementById("days").innerText = d < 10 ? "0" + d : d;
             document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
             document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
             document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
         };
 
-        // Ejecución inmediata para evitar el salto de un segundo en blanco
         updateCountdown();
         const countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    /**
+     * MOTOR DE INTERSECCIÓN NATIVA (SCROLL REVEAL OPTIMIZADO)
+     */
+    function initScrollReveal() {
+        // Seleccionamos las secciones clave que queremos animar al hacer scroll
+        const sections = document.querySelectorAll('.invitation-section');
+        
+        // Configuramos el umbral de disparo (el bloque se activa cuando asoma un 15% en pantalla)
+        const observerOptions = {
+            root: null, // Usa el viewport del dispositivo móvil por defecto
+            rootMargin: "0px 0px -80px 0px", // Margen inferior para anticipar el disparo de forma elegante
+            threshold: 0.15 
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Si la sección entra en el rango visual
+                if (entry.isIntersecting) {
+                    // Inyectamos las clases CSS de revelado y cascada
+                    entry.target.classList.add('revealed');
+                    
+                    // Una vez revelada, dejamos de observarla para liberar memoria RAM en el dispositivo
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Activamos la infraestructura aplicando la clase base y enganchando el observer a cada bloque
+        sections.forEach(section => {
+            // La primera sección (Inicio) no se oculta para no interferir con la intro cinematográfica
+            if (section.getAttribute('id-seccion') !== 'inicio') {
+                section.classList.add('reveal-on-scroll');
+                sectionObserver.observe(section);
+            }
+        });
     }
 });
