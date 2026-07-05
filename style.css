@@ -314,7 +314,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 }
 
 /* ==========================================================================
-   8. COMPONENTES DE INFORMACIÓN LOGÍSTICA Y GALERÍA EDITORIAL
+   8. COMPONENTES DE INFORMACIÓN LOGÍSTICA Y GALERÍA DUAL EXPANDIDA
    ========================================================================== */
 .quote {
     font-family: var(--font-titles);
@@ -369,13 +369,26 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin-top: 8px;
 }
 
-/* LA NUEVA RETÍCULA EDITORIAL DECONSTRUIDA (COMPATIBLE MÓVIL) */
+/* CONTENEDOR MULTI-BLOQUE DE LA GALERÍA */
+.gallery-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* Separación idéntica entre bloques horizontales y verticales para simetría pura */
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* Retícula base deconstructiva */
 .gallery-editorial-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
-    max-width: 420px;
-    margin: 0 auto;
+    width: 100%;
+}
+
+/* Modificador: Invierte el peso visual mandando el bloque vertical a la derecha */
+.gallery-editorial-grid.grid-block-inverted {
+    grid-template-columns: 1fr 1fr;
 }
 
 .gallery-item {
@@ -383,7 +396,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     overflow: hidden;
     background-color: #ffffff;
     border: 1px solid rgba(26, 26, 26, 0.06); 
-    padding: 5px; /* Efecto paspartú físico premium */
+    padding: 5px; 
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.015);
 }
 
@@ -394,7 +407,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     display: block;
 }
 
-/* Bloques asimétricos fijos para evitar CLS en el Pixel 10 */
+/* Alturas proporcionales blindadas contra CLS */
 .item-vertical {
     grid-row: span 2;
     height: 254px;
@@ -444,7 +457,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
     margin: 0 auto;
 }
 
-/* SECCIÓN PALETAS VESTIMENTA (RETORNO A CÍRCULOS MINIMALISTAS) */
+/* SECCIÓN PALETAS VESTIMENTA (CÍRCULOS RESTAURADOS) */
 .dress-code-style {
     font-family: var(--font-titles);
     font-size: 1.45rem;
@@ -531,7 +544,7 @@ body:has(#video-fullscreen-container:not(.fade-out)) {
 
 .wishlist-merchant-logo {
     display: block;
-    height: 38px; /* Altura optimizada y refinada para el Pixel 10 */
+    height: 38px; 
     width: auto;   
     margin: 0 auto 18px auto; 
     object-fit: contain;
